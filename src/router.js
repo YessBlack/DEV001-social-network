@@ -1,0 +1,20 @@
+const path={
+    home:{
+        path:"/",
+        action:()=>{
+            renderpage('home');
+        }
+    },
+    hello:{
+        path:"/",
+        action:()=>{
+            renderpage('hello');
+        }
+    }, 
+    bye:{
+        path:"/",
+        action:()=>{
+            renderpage('bye');
+        }
+    }
+}
