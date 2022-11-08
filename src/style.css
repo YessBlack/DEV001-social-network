@@ -1,0 +1,125 @@
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+:root{
+    --colorPrimary:#F09000;
+    --colorSecondary:#FF0F00;
+    --colorTertiary:#F02B00;
+
+}
+body{
+       font-family: 'Maven Pro', sans-serif;
+}
+.welcome{
+    padding:1.5rem;
+    height:100vh;
+    background-image: url(assets/img/background_principal.jpg);
+    background-size: cover;
+}
+.welcome__container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:auto;
+    height:90vh;
+    width:80%;
+    padding:10px;
+    background-color: rgba(246, 241, 241, 0.87);
+    padding:10px;
+    box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
+    border-radius:10px;
+    border: 1px solid rgba(255, 15, 0, 0.2);
+}
+.welcome__description-container {
+    text-align: center;
+}
+.welcome__buttons-container{
+    width:70%;
+   display:flex;
+   flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 30%;
+ 
+}
+
+.welcome__buttons-container a{
+    display: block;
+    width: 100%;
+    padding: .7rem;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+.welcome__login-buttons {
+    background-color: var(--colorPrimary);
+}
+.welcome__signIn-buttons {
+    background-color: var(--colorSecondary);
+}
+
+.login{
+    padding:1.5rem;
+    height:100vh;
+    background-image: url(assets/img/background_principal.jpg);
+    background-size: cover;
+}
+.login__container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:auto;
+    height:90vh;
+    width:80%;
+    padding:10px;
+    background-color: rgba(246, 241, 241, 0.87);
+    padding:10px;
+    box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
+    border-radius:10px;
+    border: 1px solid rgba(255, 15, 0, 0.2);
+}
+.login__datos-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:10px;
+    
+}
+.login__datos-set{
+    margin:20px;
+    border:1px solid var(--colorTertiary, 0.2);
+    border-radius:10px;
+    width: 90%;
+    height: 30px;
+    padding:15px;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.login__datos-set:focus {
+    outline:none;
+}
+.login__datos-set:hover{
+    border:2px solid #FF0F00;
+}
+
+.login-button{
+     background-color: var(--colorPrimary);
+     display: block;
+     width:22%;
+     padding: .7rem;
+     border-radius: 10px;
+     color: white;
+     cursor: pointer;
+     text-decoration: none;
+     text-align: center;
+ }
