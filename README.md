@@ -4,7 +4,6 @@
 
 ## Índice
 
-- [Food Track](#food-track)
   - [Índice](#índice)
   - [1. Preámbulo](#1-preámbulo)
   - [2. Historias de usuario](#2-historias-de-usuario)
@@ -12,7 +11,6 @@
     - [Prototipos Versión 1.0](#prototipos-versión-10)
       - [Prototipo de baja fidelidad - Mobile y Desktop](#prototipo-de-baja-fidelidad---mobile-y-desktop)
       - [Prototipo de alta fidelidad](#prototipo-de-alta-fidelidad)
-
 
 ## 1. Preámbulo
 
