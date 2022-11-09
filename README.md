@@ -28,8 +28,8 @@ Food Track es una App donde podrás compartir tu comida favorita, hacer reviws, 
 
 A continuación, se presenta el prototipo de baja fidelidad para mobile
 
-![Prototipo baja fidelidad - welcome mobile](src/assets/readme/welcome-mobile.jpg)
-![Prototipo baja fidelidad - registrar mobile](src/assets/readme/form-signin-mobile.jpg)
+![Prototipo baja fidelidad - welcome mobile](src/assets/readme/welcome-mobile.jpg =200x100)
+![Prototipo baja fidelidad - registrar mobile](src/assets/readme/form-signin-mobile.jpg =200x100)
 
 A continuación, se presenta el prototipo de baja fidelidad para desktop
 
