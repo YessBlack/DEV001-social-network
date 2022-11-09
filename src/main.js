@@ -1,4 +1,8 @@
-// Este es el punto de entrada de tu aplicacion
+//variable Universal
+const $=(selector)=>document.querySelector(selector)
 
 
-
+$('#nameRegister').addEventListener("keyup",()=>{
+    const prueba=$('#nameRegister').value;
+    console.log(prueba)
+})
