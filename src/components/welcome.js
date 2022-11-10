@@ -1,4 +1,5 @@
-export const welcome = `<section class="welcome">
+export const welcome = () => {
+  const pageWelcome = `<section class="welcome">
     <section class="welcome__container">
       <img src="assets/img/logo.svg" alt="logo" class="welcome__img-container">
       <h1 class="welcome__title-container">Bienvenidos a FoodTrack </h1>
@@ -9,3 +10,5 @@ export const welcome = `<section class="welcome">
       </div>
     </section>
   </section>`;
+  return pageWelcome;
+};

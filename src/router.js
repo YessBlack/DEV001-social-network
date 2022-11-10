@@ -5,16 +5,16 @@ import { registro } from './components/registro.js';
 const PATHS = {
   home: {
     path: '/',
-    template: welcome,
+    template: welcome(),
   },
   login: {
     path: '/login',
-    template: login,
+    template: login(),
   },
 
   registro: {
     path: '/registro',
-    template: registro,
+    template: registro(),
   },
 };
 class Router {
