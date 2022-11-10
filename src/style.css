@@ -122,4 +122,6 @@ body{
      cursor: pointer;
      text-decoration: none;
      text-align: center;
+     text-size-adjust: auto;
+     margin:auto;
  }

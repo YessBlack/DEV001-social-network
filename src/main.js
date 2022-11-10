@@ -1,5 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
+import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,3 +16,27 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+const $=(selector)=>document.querySelector(selector);
+
+$('#singUp').addEventListener('click',()=>{
+  const emailLogin=$('#emailLogin').value;
+  const passwordLogin=$('#passwordLogin').value;
+  const auth= getAuth();
+  const promise=signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
+  promise.then(()=>{
+    alert("Bienvenido");
+  });
+  promise.catch((e)=>console.log(e.message));
+
+})
+
+$('#signin').addEventListener('click',()=>{
+  const email=$('#email').value;
+  const password=$('#password').value;
+  const auth= getAuth();
+  const promise= createUserWithEmailAndPassword (auth,email ,password);
+  promise.catch((e)=>console.log(e.message));
+  console.log(promise)
+})
+
