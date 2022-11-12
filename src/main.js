@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import { getAuth,createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -16,27 +16,38 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-
-const $=(selector)=>document.querySelector(selector);
-
-$('#singUp').addEventListener('click',()=>{
-  const emailLogin=$('#emailLogin').value;
-  const passwordLogin=$('#passwordLogin').value;
-  const auth= getAuth();
-  const promise=signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
-  promise.then(()=>{
-    alert("Bienvenido");
+console.log(app);
+const $ = (selector) => document.querySelector(selector);
+// Registro de usuario
+// const btn = document.createElement('div');
+// const btn2 = document.createElement('button');
+// btn2.className = 'registro';
+// document.querySelector('.register').innerHTML = 'Hide Result';
+// $('.register-button').insertAdjacentHTML('beforeend', btn.appendChild());
+if (window.location.pathname === '/registro') {
+  $('#registro').addEventListener('click', () => {
+    const email = $('#email').value;
+    const password = $('#password').value;
+    const auth = getAuth();
+    const promise = createUserWithEmailAndPassword(auth, email, password);
+    promise.catch((e) => console.log(e.message));
   });
-  promise.catch((e)=>console.log(e.message));
+}
 
-})
-
-$('#signin').addEventListener('click',()=>{
-  const email=$('#email').value;
-  const password=$('#password').value;
-  const auth= getAuth();
-  const promise= createUserWithEmailAndPassword (auth,email ,password);
-  promise.catch((e)=>console.log(e.message));
-  console.log(promise)
-})
-
+// Inicio de sesión
+// const loginButton = document.createElement('div');
+// const loginRegister = document.createElement('button');
+// loginRegister.className = 'login';
+// $('.login-button').insertAdjacentHTML('beforeend', loginButton.appendChild(loginRegister));
+if (window.location.pathname === '/login') {
+  $('#login').addEventListener('click', () => {
+    const emailLogin = $('#emailLogin').value;
+    const passwordLogin = $('#passwordLogin').value;
+    const auth = getAuth();
+    const promise = signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
+    promise.then(() => {
+      alert('Bienvenido');
+    });
+    promise.catch((e) => console.log(e.message));
+  });
+}
