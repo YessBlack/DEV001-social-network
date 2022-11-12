@@ -6,7 +6,7 @@ export const registro = () => {
         <input class=login__datos-set placeholder="email" id="email"></input> 
         <input class=login__datos-set placeholder="Contraseña" id="password"></input> 
       </div>
-    <a href="#" class="login-button" id="signin">Registar</a>
+    <a href="#home" class="login-button" id="signin">Registar</a>
     </section>
   </section>`;
   return pageRegistro;

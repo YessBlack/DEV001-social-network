@@ -10,4 +10,4 @@ export const login = () => {
     </section>
   </section>`;
   return pageLogin;
-};  
+};

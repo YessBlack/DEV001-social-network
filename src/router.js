@@ -8,12 +8,12 @@ const PATHS = {
     template: welcome(),
   },
   login: {
-    path: '/login',
+    path: '#/login',
     template: login(),
   },
 
   registro: {
-    path: '/registro',
+    path: '#/registro',
     template: registro(),
   },
 };
@@ -39,4 +39,12 @@ class Router {
 }
 
 /*eslint-disable */ 
-const ROUTER = new Router(PATHS);
+export const ROUTER = new Router(PATHS);
+
+window.addEventListener('hashchange', function(e){
+  e.preventDefault
+  console.log("el evento ", e);
+  console.log(window.history);
+  const newPage = e.newURL.split("#")[1]
+  ROUTER.load(newPage) //window.history.pushState({}, null, myOldUrl);
+});
