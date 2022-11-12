@@ -51,3 +51,4 @@ if (window.location.pathname === '/login') {
     promise.catch((e) => console.log(e.message));
   });
 }
+
