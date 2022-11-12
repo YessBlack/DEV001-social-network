@@ -79,7 +79,6 @@ body{
     margin:auto;
     height:90vh;
     width:80%;
-    padding:10px;
     background-color: rgba(246, 241, 241, 0.87);
     padding:10px;
     box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
@@ -115,13 +114,24 @@ body{
 .login-button{
      background-color: var(--colorPrimary);
      display: block;
-     width:22%;
+     width:60%;
      padding: .7rem;
      border-radius: 10px;
      color: white;
      cursor: pointer;
      text-decoration: none;
      text-align: center;
-     text-size-adjust: auto;
      margin:auto;
  }
+ .welcome-button{
+    background-color: var(--colorPrimary);
+    display: block;
+    width:60%;
+    padding: .7rem;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin:auto;
+}
