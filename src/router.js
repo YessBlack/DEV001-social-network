@@ -16,19 +16,24 @@ const PATHS = {
     path: '#/registro',
     template: registro(),
   },
+
 };
+
 class Router {
+  // constructor
   constructor(paths) {
     this.paths = paths;
     this.initRouter();
   }
 
+  // Metodo para iniciar el router
   initRouter() {
     const { location: { pathname = '/' } } = window;
     const URL = pathname === '/' ? 'home' : pathname.replace('/', '');
     this.load(URL);
   }
 
+  // Metodo para cargar las vistas
   load(page = 'home') {
     const { paths } = this;
     const { path, template } = paths[page] || paths.error;
@@ -37,14 +42,14 @@ class Router {
     window.history.pushState({}, 'done', path);
   }
 }
+const ROUTER = new Router(PATHS);
+console.log(ROUTER);
 
-/*eslint-disable */ 
-export const ROUTER = new Router(PATHS);
-
-window.addEventListener('hashchange', function(e){
-  e.preventDefault
-  console.log("el evento ", e);
+window.addEventListener('hashchange', (e) => {
+  console.log('el evento ', e);
   console.log(window.history);
-  const newPage = e.newURL.split("#")[1]
-  ROUTER.load(newPage) //window.history.pushState({}, null, myOldUrl);
+  const newPage = e.newURL.split('#')[1];
+  ROUTER.load(newPage); // window.history.pushState({}, null, myOldUrl);
 });
+
+export default ROUTER;
