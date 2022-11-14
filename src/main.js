@@ -1,51 +1,45 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { app } from './lib/config';
 
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyChbY78bZsBles4iIY64FCX7dys64lzrVA',
-  authDomain: 'foodtrack-6348d.firebaseapp.com',
-  projectId: 'foodtrack-6348d',
-  storageBucket: 'foodtrack-6348d.appspot.com',
-  messagingSenderId: '128983646489',
-  appId: '1:128983646489:web:098956b4d4e31695bf8588',
+import { Router } from './router.js';
+
+const $ = (selector) => document.querySelector(selector);
+
+const render = () => {
+  $('#root').innerHTML = Router();
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log(app);
-const $ = (selector) => document.querySelector(selector);
-// Registro de usuario
-// const btn = document.createElement('div');
-// const btn2 = document.createElement('button');
-// btn2.className = 'registro';
-// document.querySelector('.register').innerHTML = 'Hide Result';
-// $('.register-button').insertAdjacentHTML('beforeend', btn.appendChild());
-if (window.location.pathname === '/registro') {
-  $('#registro').addEventListener('click', () => {
-    const email = $('#email').value;
-    const password = $('#password').value;
-    const auth = getAuth();
-    const promise = createUserWithEmailAndPassword(auth, email, password);
-    promise.catch((e) => console.log(e.message));
-  });
-}
+window.onpopstate = () => {
+  $('#root').innerHTML = '';
+  $('#root').innerHTML = Router();
+};
 
-// Inicio de sesión
-// const loginButton = document.createElement('div');
-// const loginRegister = document.createElement('button');
-// loginRegister.className = 'login';
-// $('.login-button').insertAdjacentHTML('beforeend', loginButton.appendChild(loginRegister));
-if (window.location.pathname === '/login') {
-  $('#login').addEventListener('click', () => {
-    const emailLogin = $('#emailLogin').value;
-    const passwordLogin = $('#passwordLogin').value;
-    const auth = getAuth();
-    const promise = signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
-    promise.then(() => {
-      alert('Bienvenido');
+window.addEventListener('DOMContentLoaded', render);
+window.addEventListener('hashchange', Router);
+/* Eventos del template */
+window.addEventListener('hashchange', () => {
+  if (window.location.hash === '#/login') {
+    $('#login').addEventListener('click', (e) => {
+      e.preventDefault();
+      const emailLogin = $('#emailLogin').value;
+      const passwordLogin = $('#passwordLogin').value;
+      console.log(email);
+      const auth = getAuth();
+      const promise = signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
+      promise.then(() => {
+        alert('Bienvenido');
+      });
+      promise.catch((err) => console.log(err.message));
     });
-    promise.catch((e) => console.log(e.message));
-  });
-}
+  }
+
+  if (window.location.hash === '#/registrar') {
+    $('#registro').addEventListener('click', () => {
+      const email = $('#email').value;
+      const password = $('#password').value;
+      const auth = getAuth();
+      const promise = createUserWithEmailAndPassword(auth, email, password);
+      promise.catch((e) => console.log(e.message));
+    });
+  }
+});
