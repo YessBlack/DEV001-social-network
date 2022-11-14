@@ -2,22 +2,20 @@ import { welcome } from './components/welcome.js';
 import { login } from './components/login.js';
 import { registro } from './components/registro.js';
 
-const PATHS = {
-  home: {
-    path: '/',
-    template: welcome(),
-  },
-  login: {
-    path: '#/login',
-    template: login(),
-  },
-
-  registro: {
-    path: '#/registro',
-    template: registro(),
-  },
-
+export const Router = () => {
+  // eslint-disable-next-line no-restricted-globals
+  const hash = location.hash;
+  if (!hash || hash === '#/') {
+    return welcome();
+  } if (hash === '#/registrar') {
+    return registro();
+  } if (hash === '#/login') {
+    return login();
+  }
+  return alert('Error 404');
 };
+
+/*
 
 class Router {
   // constructor
@@ -53,3 +51,4 @@ window.addEventListener('hashchange', (e) => {
 });
 
 export default ROUTER;
+*/
