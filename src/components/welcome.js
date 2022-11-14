@@ -1,14 +1,14 @@
 export const welcome = () => {
-  const pageWelcome = `<section class="welcome">
-    <section class="welcome__container">
-      <img src="assets/img/logo.svg" alt="logo" class="welcome__img-container">
-      <h1 class="welcome__title-container">Bienvenidos a FoodTrack </h1>
-      <p class="welcome__description-container">Con esta App podrás compartir tus comida favorita, hacer review, buscar y localizar platillos exquisitos en tu país</p>
-      <div class="welcome__buttons-container">
-        <a href="/#login" class="welcome__login-buttons">Iniciar Sesión</a>
-        <a href="/#registro" class="welcome__signIn-buttons">Registrarse</a>
-      </div>
-    </section>
-  </section>`;
+  const pageWelcome = `<section class="container">
+  <section class="container__content">
+    <img src="assets/img/logo.svg" alt="logo" class="container__logo-content">
+    <h1 class="container__title-content">Bienvenidos a FoodTrack </h1>
+    <p class="container__welcome-content">Con esta App podrás compartir tus comida favorita, hacer review, buscar y localizar platillos exquisitos en tu país</p>
+    <div class="container__buttons-content">
+      <a href="#/login" class="container__login-buttons">Iniciar Sesión</a>
+      <a href="#/registrar" class="container__signIn-buttons">Registrarse</a>
+    </div>
+  </section>
+</section>`;
   return pageWelcome;
 };
