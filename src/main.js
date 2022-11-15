@@ -1,6 +1,5 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
-import { app } from './lib/config';
-import { Router } from './router.js';
+import { Router } from './components/router.js';
+import { createUser, loginUser } from './lib/auth.js';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -13,6 +12,8 @@ window.onpopstate = () => {
   $('#root').innerHTML = Router();
 };
 
+console.log('hola');
+
 window.addEventListener('DOMContentLoaded', render);
 window.addEventListener('hashchange', Router);
 /* Eventos del template */
@@ -21,13 +22,19 @@ window.addEventListener('hashchange', () => {
     $('#formLogin').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
-      const auth = getAuth();
-      const promise = signInWithEmailAndPassword(auth, data.email, data.password);
+      const promise = loginUser(data.email, data.password);
       promise.then(() => {
         alert('Bienvenido');
         window.location.hash = '#timeline';
       });
-      promise.catch((err) => console.log(err.message));
+      promise.catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        $('.error').insertAdjacentHTML('beforeend', errorCode);
+        setTimeout(() => {
+          $('.error').innerHTML = '';
+        }, 5000);
+      });
     });
   }
 
@@ -35,14 +42,19 @@ window.addEventListener('hashchange', () => {
     $('#formRegister').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
-      console.log(data);
-      const auth = getAuth();
-      const promise = createUserWithEmailAndPassword(auth, data.email, data.password);
+      const promise = createUser(data.email, data.password);
       promise.then(() => {
         alert('Bienvenido');
         window.location.hash = '#login';
       });
-      promise.catch((err) => console.log(err.message));
+      promise.catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        $('.error').insertAdjacentHTML('beforeend', errorCode);
+        setTimeout(() => {
+          $('.error').innerHTML = '';
+        }, 5000);
+      });
     });
   }
 });

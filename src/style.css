@@ -20,7 +20,7 @@ body{
     display: none;
 }
 .container {
-    padding: 1.5rem;
+    padding: var(--paddingGeneral);
     height: 100vh;
     background-image: url('../assets/img/background_principal.jpg');
     background-size: cover;
@@ -142,59 +142,43 @@ body{
     height: 100%;
     padding: 0px 1rem;
 }
+/* ------------------- Error-----------------*/
+.error{
+    color:var(--colorSecondary);
+    font-size:large;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    padding:4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+
 /* ------------------- Media Querys -----------------*/
-@media (min-width:768px) {
-    .container{
-        background:none;
-        }
-    .img-desktop{
-        display:block;
-        width:50%;
-        position:absolute;
-        margin-left:40%;
-       }
-    
-    .container__content{
-        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-       width:40%;
-       margin-left: 12px;
-       position:absolute;
-       z-index: 1;
-    }
-    }
-  
 @media (min-width:1024px) {
-.container {
-    background:none;
-    padding: 0;
+    .img-desktop{
+        display: block;
+        margin-left: 7%;
+        margin-right: -4%;
     }
-.img-desktop{
-    height: 90%;
-    display:block;
-    width: 90%;
-    position:absolute;
-   }
-.img-desktop img {
-    height: 100%;
-    width: 60%;
-    object-fit: cover;
-}
-.container__content {
-    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-   width:30%;
-   margin-left: 12px;
-   position:absolute;
-   z-index: 1; 
-   height: 90%;
-}
-.containerAuth{
-    background:none;
+    .img-desktop img{
+        width: 100%;
+        object-fit: cover;
+        height: 100vh;
+        margin-top: -25px;
     }
-.containerAuth__content{
-    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-    width:30%;
-    margin-left: 12px;
-    position:absolute;
-    z-index: 1; 
-}
+    .container{
+        left: 0;
+        background:none;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .container__content{
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+    }
+    .container__content, .containerAuth__content {
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+        margin: 0;
+    }
 }

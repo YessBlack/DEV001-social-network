@@ -10,7 +10,7 @@ export const welcome = () => {
     </div>
   </section>
   <div class="img-desktop">
-    <img src="assets/img/background_Desktop1.png">
+    <img src="assets/img/background_principal__rec.jpg">
   </div>
 </section>`;
   return pageWelcome;

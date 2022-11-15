@@ -1,8 +1,5 @@
 export const login = () => {
-  const pageLogin = `<section class="containerAuth container">
-    <div class="img-desktop">
-      <img src="assets/img/background_Desktop1.png">
-    </div>
+  const pageLogin = `<section class="containerAuth container">    
     <section class="containerAuth__content">
       <h1 class="containerAuth__title-content">Inicia sesion</h1>
       <div class= "containerAuth__register-content">
@@ -17,7 +14,11 @@ export const login = () => {
           <button class="containerAuth__login-button" id="login">Ingresar</button>
         </form>
       </div>
+      <div class="error"></div>
     </section>
+    <div class="img-desktop">
+    <img src="assets/img/background_principal__rec.jpg">
+    </div>
   </section>`;
   return pageLogin;
 };
