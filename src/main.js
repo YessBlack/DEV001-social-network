@@ -44,7 +44,7 @@ if (window.location.hash === '#/login') {
     const auth = getAuth();
     const promise = signInWithEmailAndPassword(auth, data.email, data.password);
     promise.then(() => {
-      alert('Bienvenido');
+      window.location = '#/timeline';
     });
     promise.catch((err) => console.log(err.message));
   });

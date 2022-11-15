@@ -9,144 +9,212 @@
     --colorPrimary:#F09000;
     --colorSecondary:#FF0F00;
     --colorTertiary:#F02B00;
-    --bgPrimary: rgba(255, 255, 255, .87);
-    --paddingGeneral: 1.5rem;
+
 }
 body{
-    font-family: 'Maven Pro', sans-serif;
+       font-family: 'Maven Pro', sans-serif;
 }
-/* ----------- Pagina de Home ---------*/
-.container {
-    padding: 1.5rem;
-    height: 100vh;
-    background-image: url('../assets/img/background_principal.jpg');
+/* ------------------- Welcome -----------------*/
+.welcome{
+    padding:1.5rem;
+    height:100vh;
+    background-image: url(assets/img/background_principal.jpg);
     background-size: cover;
 }
-.container__content, .containerAuth__content {
-    max-width: 400px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(4,1fr);
-    place-items: center;
-    grid-gap: 1rem;
-    text-align: center;
-    border-radius: 10px;
-    background-color: var(--bgPrimary);
-    width: 90%;
-    height: 100%;    
-    margin: auto;
-    padding: var(--paddingGeneral);
-    border: 1px solid rgba(255, 15, 0, 0.2);
+.img-desktop{
+    display:none;
+}
+.welcome__container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:auto;
+    height:90vh;
+    width:80%;
+    padding:10px;
+    background-color: rgba(246, 241, 241, 0.87);
+    padding:10px;
     box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
+    border-radius:10px;
+    border: 1px solid rgba(255, 15, 0, 0.2);
 }
-.container__buttons-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.container__buttons-content a {
-    background-color: var(--colorPrimary);
-    color: white;
-    padding: .7rem;
-    text-decoration: none;
-    margin-top: 10px;
-    border-radius: 10px;
-    width: 150px;
+.welcome__description-container {
     text-align: center;
 }
-.container__title-content {
-    font-size: 1.3rem;
-    margin-top: 1rem;
-}
-.container__buttons-content a:nth-child(2) {
-    background-color: var(--colorSecondary);
-}
-/* ----------- Pagina de Registro ---------*/
-.containerAuth__content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 30px 1fr;   
-}
-.containerAuth__register-content {
-    width: 100%;
-}
-.containerAuth__form-register input {
-    width: 90%;
-    padding: .7rem;
-    margin-top: 1rem;
-    border-radius: 10px;
-    border: 1px solid var(--colorPrimary);
-}
-.lines-effect {
-    margin-top: 1rem;
-    display: inline-block;
-    position: relative;
-    width: 90%;
- }
- .lines-effect::after, .lines-effect::before {
-    content: "";
-    position: absolute;
-    width: 50px;
-    height: 2px;
-    background-color: black;
-    top: .6rem;
-    right: 0rem;
- }
- .lines-effect::before{
-    top: 0.6rem;
-    left: 0rem;
- }
- .containerAuth__title-content {
-    color: var(--colorSecondary);
-    font-size: 1.3rem;
- }
- .containerAuth__button-google img {
-    width: 30px;
-    margin-right: 10px;
- }
- .containerAuth__button-google {
-    width: 90%;
-    display: flex;
+.welcome__buttons-container{
+    width:70%;
+   display:flex;
+   flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 10px;
-    border: 1px solid var(--colorPrimary);
-    padding: .3rem;
-    text-decoration: none;
-    color: black;
-    margin-top: 15px;
-    background-color: white;
- }
- .containerAuth__login-button {
-    background-color: var(--colorSecondary);
-    color: white;
-    padding: .8rem;
-    text-decoration: none;
-    margin-top: 10px;
-    border-radius: 10px;
-    width: 150px;
-    text-align: center;
-    border: none;
-    margin: 15px auto;
-    width: 90%;
- }
-.containerAuth__form-register {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100%;
-    padding: 0px 1rem;
+    height: 30%;
+ 
 }
-@media(min-width:768px) {
-    .container {
-        background-image: none;
-    }
-    .container__content, .containerAuth__content {
-        background-image: url('../assets/img/background_principal.jpg');
-        background-size: cover;
-        background-color: var(--bgPrimary);
-    }
 
+.welcome__buttons-container a{
+    display: block;
+    width: 100%;
+    padding: .7rem;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+.welcome__login-buttons {
+    background-color: var(--colorPrimary);
+}
+.welcome__signIn-buttons {
+    background-color: var(--colorSecondary);
+}
+/* ------------------- Register/Login -----------------*/
+.login{
+    padding:1.5rem;
+    height:100vh;
+    background-image: url(assets/img/background_principal.jpg);
+    background-size: cover;
+}
+.login__container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    margin:auto;
+    height:90vh;
+    width:80%;
+    background-color: rgba(246, 241, 241, 0.87);
+    padding:10px;
+    box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
+    border-radius:10px;
+    border: 1px solid rgba(255, 15, 0, 0.2);
+}
+.login__datos-container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding:10px;
+    
+}
+.login__datos-set{
+    margin:20px;
+    border:1px solid var(--colorTertiary, 0.2);
+    border-radius:10px;
+    width: 90%;
+    height: 30px;
+    padding:15px;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.login__datos-set:focus {
+    outline:none;
+}
+.login__datos-set:hover{
+    border:2px solid #FF0F00;
+}
+
+.login-button{
+     background-color: var(--colorPrimary);
+     display: block;
+     width:60%;
+     padding: .7rem;
+     border-radius: 10px;
+     color: white;
+     cursor: pointer;
+     text-decoration: none;
+     text-align: center;
+     margin:auto;
+     }
+    
+ .welcome-button{
+    background-color: var(--colorPrimary);
+    display: block;
+    width:60%;
+    padding: .7rem;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin:auto;
+}
+/* ------------------- Error-----------------*/
+
+  .prueba{
+    font-family: 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    font-weight: bold;
+    width:fit-content;
+    height: fit-content;
+    color:var(--colorSecondary);
+    border-radius: 6px;
+   padding:10px;
+   display:flex;
+   display:none;
+   background-color: beige;
+   box-shadow:  rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  }
+  /* ------------------- Timeline -----------------*/
+  .timeline{
+    padding:1.5rem;
+    height:100vh;
+    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_alt.webp);
+    background-size: cover;
+      }
+  h1{
+    font-size: xx-large;
+    color:#F09000;
+    text-align: center;
+      }
+
+/* ------------------- Media Querys -----------------*/
+@media (min-width:768px) {
+    .welcome{
+        background:none;
+        }
+    .img-desktop{
+        display:block;
+        width:50%;
+        position:absolute;
+        margin-left:56%;
+       }
+    
+    .welcome__container{
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+       width:40%;
+       margin-left: 12px;
+       position:absolute;
+       z-index: 1;
+    }
+    }
+  
+@media (min-width:1024px) {
+.welcome{
+    background:none;
+    }
+.img-desktop{
+    display:block;
+    width: 300px;
+    position:absolute;
+   }
+
+.welcome__container{
+    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+   width:30%;
+   margin-left: 12px;
+   position:absolute;
+   z-index: 1; 
+}
+.login{
+    background:none;
+    }
+.login__container{
+    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+    width:30%;
+    margin-left: 12px;
+    position:absolute;
+    z-index: 1; 
+}
 }

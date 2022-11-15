@@ -1,6 +1,7 @@
 import { welcome } from './components/welcome.js';
 import { login } from './components/login.js';
 import { registro } from './components/registro.js';
+import { timeline } from './components/timeline.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -11,6 +12,9 @@ export const Router = () => {
     return registro();
   } if (hash === '#/login') {
     return login();
+  }
+  if (hash === '#/timeline') {
+    return timeline();
   }
   return alert('Error 404');
 };
