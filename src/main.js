@@ -1,6 +1,5 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { app } from './lib/config';
-
 import { Router } from './router.js';
 
 const $ = (selector) => document.querySelector(selector);
@@ -18,28 +17,32 @@ window.addEventListener('DOMContentLoaded', render);
 window.addEventListener('hashchange', Router);
 /* Eventos del template */
 window.addEventListener('hashchange', () => {
-  if (window.location.hash === '#/login') {
-    $('#login').addEventListener('click', (e) => {
+  if (window.location.hash === '#login') {
+    $('#formLogin').addEventListener('submit', (e) => {
       e.preventDefault();
-      const emailLogin = $('#emailLogin').value;
-      const passwordLogin = $('#passwordLogin').value;
-      console.log(email);
+      const data = Object.fromEntries(new FormData(e.target));
       const auth = getAuth();
-      const promise = signInWithEmailAndPassword(auth, emailLogin, passwordLogin);
+      const promise = signInWithEmailAndPassword(auth, data.email, data.password);
       promise.then(() => {
         alert('Bienvenido');
+        window.location.hash = '#timeline';
       });
       promise.catch((err) => console.log(err.message));
     });
   }
 
-  if (window.location.hash === '#/registrar') {
-    $('#registro').addEventListener('click', () => {
-      const email = $('#email').value;
-      const password = $('#password').value;
+  if (window.location.hash === '#registrar') {
+    $('#formRegister').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target));
+      console.log(data);
       const auth = getAuth();
-      const promise = createUserWithEmailAndPassword(auth, email, password);
-      promise.catch((e) => console.log(e.message));
+      const promise = createUserWithEmailAndPassword(auth, data.email, data.password);
+      promise.then(() => {
+        alert('Bienvenido');
+        window.location.hash = '#login';
+      });
+      promise.catch((err) => console.log(err.message));
     });
   }
 });

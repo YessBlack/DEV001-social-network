@@ -1,16 +1,22 @@
 import { welcome } from './components/welcome.js';
 import { login } from './components/login.js';
 import { registro } from './components/registro.js';
+import { timeline } from './components/Timeline.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
   const hash = location.hash;
   if (!hash || hash === '#/') {
     return welcome();
-  } if (hash === '#/registrar') {
+  }
+  if (hash === '#registrar') {
     return registro();
-  } if (hash === '#/login') {
+  }
+  if (hash === '#login') {
     return login();
+  }
+  if (hash === '#timeline') {
+    return timeline();
   }
   return alert('Error 404');
 };

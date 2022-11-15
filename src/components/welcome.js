@@ -5,10 +5,13 @@ export const welcome = () => {
     <h1 class="container__title-content">Bienvenidos a FoodTrack </h1>
     <p class="container__welcome-content">Con esta App podrás compartir tus comida favorita, hacer review, buscar y localizar platillos exquisitos en tu país</p>
     <div class="container__buttons-content">
-      <a href="#/login" class="container__login-buttons">Iniciar Sesión</a>
-      <a href="#/registrar" class="container__signIn-buttons">Registrarse</a>
+      <a href="#login" class="container__login-buttons">Iniciar Sesión</a>
+      <a href="#registrar" class="container__signIn-buttons">Registrarse</a>
     </div>
   </section>
+  <div class="img-desktop">
+    <img src="assets/img/background_Desktop1.png">
+  </div>
 </section>`;
   return pageWelcome;
 };

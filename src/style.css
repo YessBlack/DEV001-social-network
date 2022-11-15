@@ -16,6 +16,9 @@ body{
     font-family: 'Maven Pro', sans-serif;
 }
 /* ----------- Pagina de Home ---------*/
+.img-desktop{
+    display: none;
+}
 .container {
     padding: 1.5rem;
     height: 100vh;
@@ -139,14 +142,59 @@ body{
     height: 100%;
     padding: 0px 1rem;
 }
-@media(min-width:768px) {
-    .container {
-        background-image: none;
+/* ------------------- Media Querys -----------------*/
+@media (min-width:768px) {
+    .container{
+        background:none;
+        }
+    .img-desktop{
+        display:block;
+        width:50%;
+        position:absolute;
+        margin-left:40%;
+       }
+    
+    .container__content{
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+       width:40%;
+       margin-left: 12px;
+       position:absolute;
+       z-index: 1;
     }
-    .container__content, .containerAuth__content {
-        background-image: url('../assets/img/background_principal.jpg');
-        background-size: cover;
-        background-color: var(--bgPrimary);
     }
-
+  
+@media (min-width:1024px) {
+.container {
+    background:none;
+    padding: 0;
+    }
+.img-desktop{
+    height: 90%;
+    display:block;
+    width: 90%;
+    position:absolute;
+   }
+.img-desktop img {
+    height: 100%;
+    width: 60%;
+    object-fit: cover;
+}
+.container__content {
+    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+   width:30%;
+   margin-left: 12px;
+   position:absolute;
+   z-index: 1; 
+   height: 90%;
+}
+.containerAuth{
+    background:none;
+    }
+.containerAuth__content{
+    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
+    width:30%;
+    margin-left: 12px;
+    position:absolute;
+    z-index: 1; 
+}
 }

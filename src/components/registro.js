@@ -1,5 +1,8 @@
 export const registro = () => {
   const pageRegistro = `<section class="containerAuth container">
+    <div class="img-desktop">
+      <img src="assets/img/background_Desktop1.png">
+    </div>
     <section class="containerAuth__content">
       <h1 class="containerAuth__title-content">Registrate</h1>
       <div class= "containerAuth__register-content">
@@ -13,7 +16,7 @@ export const registro = () => {
             <img src="assets/img/google.png" alt="logo de google">
             Registrarse con Google
           </a>
-          <button class="containerAuth__login-button" id="registro">Registar</button>
+          <button class="containerAuth__login-button">Registar</button>
         </form>
       </div>
     </section>
