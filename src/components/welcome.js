@@ -7,9 +7,9 @@ export const welcome = () => {
       <img src="assets/img/logo.svg" alt="logo" class="container__logo-content">
     <h1 class="welcome__description-container">Bienvenidos a FoodTrack </h1>
     <p class="welcome__description-container">Con esta App podrás compartir tus comida favorita, hacer review, buscar y localizar platillos exquisitos en tu país</p>
-    <div class=".welcome__buttons-containert">
-      <a href="#/login" class="container__login-buttons">Iniciar Sesión</a>
-      <a href="#/registrar" class="container__signIn-buttons">Registrarse</a>
+    <div class="welcome__buttons-container">
+      <a href="#/login" class="welcome__signIn-buttons">Iniciar Sesión</a>
+      <a href="#/registrar" class="welcome__login-buttons">Registrarse</a>
     </div>
   </section>
 </section>`;
