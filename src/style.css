@@ -66,6 +66,9 @@ body{
     background-color: var(--colorSecondary);
 }
 /* ----------- Pagina de Registro ---------*/
+.login {
+    margin-top: var(--paddingGeneral);
+}
 .containerAuth__content {
     display: grid;
     grid-template-columns: 1fr;
@@ -126,12 +129,10 @@ body{
     color: white;
     padding: .8rem;
     text-decoration: none;
-    margin-top: 10px;
     border-radius: 10px;
     width: 150px;
     text-align: center;
     border: none;
-    margin: 15px auto;
     width: 90%;
  }
 .containerAuth__form-register {
@@ -153,6 +154,20 @@ body{
     height: fit-content;
     padding:4px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+}
+.eye{
+    cursor: pointer;
+    position:sticky;
+    transform: translateY(-50);
+    top:45%;
+    margin-left: 75%;
+}
+.eye-registro{
+    cursor: pointer;
+    position:sticky;
+    transform: translateY(-50);
+    top:45%;
+    margin-left: 75%;
 }
 
 /* ------------------- Media Querys -----------------*/

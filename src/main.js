@@ -19,6 +19,19 @@ window.addEventListener('hashchange', Router);
 /* Eventos del template */
 window.addEventListener('hashchange', () => {
   if (window.location.hash === '#login') {
+    $('#eye').addEventListener('click', () => {
+      if ($('.containerAuth__password-form').type === 'password') {
+        $('.containerAuth__password-form').type = 'text';
+        $('#icon').classList.remove('fa-eye-slash');
+        $('#icon').classList.add('fa-eye');
+      } else {
+        $('.containerAuth__password-form').type = 'text';
+        $('.containerAuth__password-form').type = 'password';
+        $('#icon').classList.remove('fa-eye');
+        $('#icon').classList.add('fa-eye-slash');
+      }
+    });
+
     $('#formLogin').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
@@ -39,6 +52,18 @@ window.addEventListener('hashchange', () => {
   }
 
   if (window.location.hash === '#registrar') {
+    $('#eye-registro').addEventListener('click', () => {
+      if ($('.containerAuth__password-form').type === 'password') {
+        $('.containerAuth__password-form').type = 'text';
+        $('#icon').classList.remove('fa-eye-slash');
+        $('#icon').classList.add('fa-eye');
+      } else {
+        $('.containerAuth__password-form').type === 'text';
+        $('.containerAuth__password-form').type = 'password';
+        $('#icon').classList.remove('fa-eye');
+        $('#icon').classList.add('fa-eye-slash');
+      }
+    });
     $('#formRegister').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
