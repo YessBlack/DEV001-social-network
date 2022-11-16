@@ -4,9 +4,11 @@ export const login = () => {
       <h1 class="containerAuth__title-content">Inicia sesion</h1>
       <div class= "containerAuth__register-content">
         <form class="containerAuth__form-register" id="formLogin">
-          <input class="containerAuth__email-form" placeholder="email" id="emailLogin" name="email">
-          <span id="eye" class="eye"><i id="icon" class="fa-sharp fa-solid fa-eye-slash"></i></span>
-          <input class="containerAuth__password-form" placeholder="Contraseña" id="passwordLogin" name="password" type="password">          
+          <input class="containerAuth__email-form" placeholder="email" id="emailLogin" name="email">         
+          <div class="ojo">
+            <span id="eye-registro" class="eye-registro"><i id="icon" class="fa-sharp fa-solid fa-eye-slash"></i></span>
+          </div> 
+          <input class="containerAuth__password-form " placeholder="Contraseña" id="passwordLogin" name="password" type="password">                    
           <button class="containerAuth__login-button login" id="login">Ingresar</button>
           <h3 class="lines-effect">OR</h3>
           <a href="#" id="loginGoogle" class="containerAuth__button-google">

@@ -25,7 +25,7 @@ window.addEventListener('hashchange', () => {
         $('#icon').classList.remove('fa-eye-slash');
         $('#icon').classList.add('fa-eye');
       } else {
-        $('.containerAuth__password-form').type = 'text';
+        $('.containerAuth__password-form').type === 'text';
         $('.containerAuth__password-form').type = 'password';
         $('#icon').classList.remove('fa-eye');
         $('#icon').classList.add('fa-eye-slash');
