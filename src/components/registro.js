@@ -11,9 +11,9 @@ export const registro = () => {
           </div>          
           <input class="containerAuth__password-form " placeholder="Contraseña" id="password" name="password" type="password">
           <input type="text" class="containerAuth__country-form password-eye" placeholder="País" id="country" name="country"><br>          
-          <button class="containerAuth__login-button">Registar</button>
+          <button class="containerAuth__login-button">Registarse</button>
           <h3 class="lines-effect">OR</h3>
-          <a href="#" id="registerGoogle" class="containerAuth__button-google">
+          <a id="registerGoogle" class="containerAuth__button-google">
             <img src="assets/img/google.png" alt="logo de google">
             Registrarse con Google
           </a>

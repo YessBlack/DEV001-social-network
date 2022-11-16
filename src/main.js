@@ -1,7 +1,5 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-
 import { Router } from './components/router.js';
-import { createUser, loginUser } from './lib/auth.js';
+import { createUser, loginUser, authenticationGoogle } from './lib/auth.js';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -14,10 +12,9 @@ window.onpopstate = () => {
   $('#root').innerHTML = Router();
 };
 
-console.log('hola');
-
 window.addEventListener('DOMContentLoaded', render);
 window.addEventListener('hashchange', Router);
+
 /* Eventos del template */
 window.addEventListener('hashchange', () => {
   if (window.location.hash === '#login') {
@@ -43,6 +40,29 @@ window.addEventListener('hashchange', () => {
         window.location.hash = '#timeline';
       });
       promise.catch((error) => {
+        console.log(error);
+      });
+    });
+
+    $('#loginGoogle').addEventListener('click', () => {
+      const promise = authenticationGoogle();
+      promise.then(() => {
+        window.location.hash = '#timeline';
+      });
+      promise.catch((error) => {
+        console.log(error);
+      });
+    });
+  }
+
+  if (window.location.hash === '#registrar') {
+    $('#registerGoogle').addEventListener('click', (e) => {
+      e.preventDefault();
+      const promise = authenticationGoogle();
+      promise.then(() => {
+        window.location.hash = '#timeline';
+      });
+      promise.catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         $('.error').insertAdjacentHTML('beforeend', errorCode);
@@ -51,39 +71,6 @@ window.addEventListener('hashchange', () => {
         }, 5000);
       });
     });
-
-    $('#loginGoogle').addEventListener('click', async (e) => {
-      e.preventDefault();
-      const provider = new GoogleAuthProvider();
-      const auth = getAuth();
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          // This gives you a Google Access Token. You can use it to access the Google API.
-          const credential = GoogleAuthProvider.credentialFromResult(result);
-          const token = credential.accessToken;
-          // The signed-in user info.
-          const user = result.user;
-          // ...
-        }).catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          // The email of the user's account used.
-          const email = error.customData.email;
-          // The AuthCredential type that was used.
-          const credential = GoogleAuthProvider.credentialFromError(error);
-          // ...
-        });
-      try {
-        const provider = await new GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-      } catch (error) {
-        console.log(error);
-      }
-    });
-  }
-
-  if (window.location.hash === '#registrar') {
     $('#eye-registro').addEventListener('click', () => {
       if ($('.containerAuth__password-form').type === 'password') {
         $('.containerAuth__password-form').type = 'text';

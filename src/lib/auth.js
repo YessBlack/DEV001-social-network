@@ -1,4 +1,11 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from 'firebase/auth';
+
 import { app } from './config.js';
 
 export const createUser = (email, password) => {
@@ -11,4 +18,10 @@ export const loginUser = (email, password) => {
   const auth = getAuth();
   const promise = signInWithEmailAndPassword(auth, email, password);
   return promise;
+};
+
+export const authenticationGoogle = () => {
+  const auth = getAuth();
+  const provider = new GoogleAuthProvider();
+  return signInWithPopup(auth, provider);
 };
