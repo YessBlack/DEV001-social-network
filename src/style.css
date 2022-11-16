@@ -20,7 +20,7 @@ body{
     display: none;
 }
 .container {
-    padding: 1.5rem;
+    padding: var(--paddingGeneral);
     height: 100vh;
     background-image: url('../assets/img/background_principal.jpg');
     background-size: cover;
@@ -66,6 +66,9 @@ body{
     background-color: var(--colorSecondary);
 }
 /* ----------- Pagina de Registro ---------*/
+.login {
+    margin-top: var(--paddingGeneral);
+}
 .containerAuth__content {
     display: grid;
     grid-template-columns: 1fr;
@@ -126,12 +129,10 @@ body{
     color: white;
     padding: .8rem;
     text-decoration: none;
-    margin-top: 10px;
     border-radius: 10px;
     width: 150px;
     text-align: center;
     border: none;
-    margin: 15px auto;
     width: 90%;
  }
 .containerAuth__form-register {
@@ -141,21 +142,6 @@ body{
     justify-content: space-evenly;
     height: 100%;
     padding: 0px 1rem;
-}
-/* ------------------- Mostrar contraseña-----------------*/
-#eye{
-    cursor: pointer;
-    position:absolute;
-    transform: translateY(-50);
-    top:44%;
-    right:220px;
-}
-#eye-registro{
-    cursor: pointer;
-    position:absolute;
-    transform: translateY(-50);
-    top:43%;
-    right:220px;
 }
 /* ------------------- Error-----------------*/
 .error{
@@ -168,61 +154,63 @@ body{
     height: fit-content;
     padding:4px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
-    display:none;
 }
+/* ------------------- Ocultar/mostar password-----------------*/
+.ojo{
+    position:relative;
+    margin-left: 70px;
+}
+    .eye{
+    cursor: pointer;
+    position:absolute;
+    transform: translateY(-50);
+    padding:25px;
+}
+.eye-registro{
+    cursor: pointer;
+    position:absolute;
+    transform: translateY(-50);
+    padding:25px;
+ 
+}
+
 /* ------------------- Media Querys -----------------*/
-@media (min-width:768px) {
-    .container{
-        background:none;
-        }
-    .img-desktop{
-        display:block;
-        width:50%;
-        position:absolute;
-        margin-left:40%;
-       }
-    
-    .container__content{
-        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-       width:40%;
-       margin-left: 12px;
-       position:absolute;
-       z-index: 1;
+@media (min-width:430px) {
+    .ojo{
+        margin-left: 130px;
     }
+}
+@media (min-width:674px) {
+    .ojo{
+        margin-left: 150px;
     }
-  
+}
 @media (min-width:1024px) {
-.container {
-    background:none;
-    padding: 0;
+    .img-desktop{
+        display: block;
+        margin-left: 7%;
+        margin-right: -4%;
     }
-.img-desktop{
-    height: 90%;
-    display:block;
-    width: 90%;
-    position:absolute;
-   }
-.img-desktop img {
-    height: 100%;
-    width: 60%;
-    object-fit: cover;
-}
-.container__content {
-    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-   width:30%;
-   margin-left: 12px;
-   position:absolute;
-   z-index: 1; 
-   height: 90%;
-}
-.containerAuth{
-    background:none;
+    .img-desktop img{
+        width: 100%;
+        object-fit: cover;
+        height: 100vh;
+        margin-top: -25px;
     }
-.containerAuth__content{
-    background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg);
-    width:30%;
-    margin-left: 12px;
-    position:absolute;
-    z-index: 1; 
-}
+    .container{
+        left: 0;
+        background:none;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .container__content{
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+    }
+    .container__content, .containerAuth__content {
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+        margin: 0;
+    }
+    .ojo{
+        margin-left: 150px;
+    }
 }
