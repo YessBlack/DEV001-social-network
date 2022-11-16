@@ -9,10 +9,11 @@
     --colorPrimary:#F09000;
     --colorSecondary:#FF0F00;
     --colorTertiary:#F02B00;
-
+    --bgPrimary: rgba(255, 255, 255, .87);
+    --paddingGeneral: 1.5rem;
 }
 body{
-       font-family: 'Maven Pro', sans-serif;
+    font-family: 'Maven Pro', sans-serif;
 }
 /* ----------- Pagina de Home ---------*/
 .img-desktop{
@@ -140,6 +141,34 @@ body{
     justify-content: space-evenly;
     height: 100%;
     padding: 0px 1rem;
+}
+/* ------------------- Mostrar contraseña-----------------*/
+#eye{
+    cursor: pointer;
+    position:absolute;
+    transform: translateY(-50);
+    top:44%;
+    right:220px;
+}
+#eye-registro{
+    cursor: pointer;
+    position:absolute;
+    transform: translateY(-50);
+    top:43%;
+    right:220px;
+}
+/* ------------------- Error-----------------*/
+.error{
+    color:var(--colorSecondary);
+    font-size:large;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    width: fit-content;
+    height: fit-content;
+    padding:4px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    display:none;
 }
 /* ------------------- Media Querys -----------------*/
 @media (min-width:768px) {

@@ -1,7 +1,4 @@
 export const timeline = () => {
-  const pageTimeline = `
-    <section class="timeline">
-    <h1>BIENVENIDOS</h1>
-      </section>`;
+  const pageTimeline = '<h1>timeline</h1>';
   return pageTimeline;
 };
