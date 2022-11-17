@@ -25,9 +25,7 @@ window.addEventListener('hashchange', () => {
         $('.containerAuth__password-form').type = 'text';
         $('#icon').classList.remove('fa-eye-slash');
         $('#icon').classList.add('fa-eye');
-      } else {
-        // eslint-disable-next-line no-unused-expressions
-        $('.containerAuth__password-form').type === 'text';
+      } else if ($('.containerAuth__password-form').type === 'text'){
         $('.containerAuth__password-form').type = 'password';
         $('#icon').classList.remove('fa-eye');
         $('#icon').classList.add('fa-eye-slash');
@@ -71,9 +69,7 @@ window.addEventListener('hashchange', () => {
         $('.containerAuth__password-form').type = 'text';
         $('#icon').classList.remove('fa-eye-slash');
         $('#icon').classList.add('fa-eye');
-      } else {
-        // eslint-disable-next-line no-unused-expressions
-        $('.containerAuth__password-form').type === 'text';
+      }  else if ($('.containerAuth__password-form').type === 'text'){
         $('.containerAuth__password-form').type = 'password';
         $('#icon').classList.remove('fa-eye');
         $('#icon').classList.add('fa-eye-slash');

@@ -1,15 +1,17 @@
-import { registro } from '../src/components/registro';
-
 /**
  * @jest-environment jsdom
  * @jest-environment-options {"url": "https://jestjs.io/"}
  */
 
-describe('registro', () => {
+import { createUser } from '../src/lib/auth.js';
+
+jest.mock('../src/__mocks__/imports-mock.js');
+
+describe('createUser', () => {
   it('debería ser una función', () => {
-    expect(typeof registro).toBe('function');
+    expect(typeof createUser).toBe('function');
   });
-  it('debería retornar un string', () => {
-    expect(typeof registro()).toBe('string');
+  it('debería retornar una promesa', () => {
+    expect(createUser()).toBeInstanceOf(Promise);
   });
 });
