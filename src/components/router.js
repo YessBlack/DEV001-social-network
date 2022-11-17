@@ -1,7 +1,7 @@
 import { welcome } from './welcome.js';
 import { login } from './login.js';
 import { registro } from './registro.js';
-import { timeline } from './Timeline.js';
+import { timeline } from './timeline.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
