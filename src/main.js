@@ -24,7 +24,7 @@ window.addEventListener('hashchange', () => {
         $('#icon').classList.remove('fa-eye-slash');
         $('#icon').classList.add('fa-eye');
       } else {
-        $('.containerAuth__password-form').type === 'text';
+        $('.containerAuth__password-form').type = 'text';
         $('.containerAuth__password-form').type = 'password';
         $('#icon').classList.remove('fa-eye');
         $('#icon').classList.add('fa-eye-slash');
@@ -65,6 +65,7 @@ window.addEventListener('hashchange', () => {
       promise.catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
         $('.error').insertAdjacentHTML('beforeend', errorCode);
         setTimeout(() => {
           $('.error').innerHTML = '';
@@ -76,8 +77,7 @@ window.addEventListener('hashchange', () => {
         $('.containerAuth__password-form').type = 'text';
         $('#icon').classList.remove('fa-eye-slash');
         $('#icon').classList.add('fa-eye');
-      } else {
-        $('.containerAuth__password-form').type === 'text';
+      } else if ($('.containerAuth__password-form').type === 'text') {
         $('.containerAuth__password-form').type = 'password';
         $('#icon').classList.remove('fa-eye');
         $('#icon').classList.add('fa-eye-slash');
@@ -94,6 +94,7 @@ window.addEventListener('hashchange', () => {
       promise.catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
         $('.error').insertAdjacentHTML('beforeend', errorCode);
         setTimeout(() => {
           $('.error').innerHTML = '';
