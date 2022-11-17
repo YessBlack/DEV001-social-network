@@ -13,10 +13,10 @@ export const registro = () => {
           <input type="text" class="containerAuth__country-form" placeholder="País" id="country" name="country"><br>          
           <button class="containerAuth__login-button">Registar</button>
           <h3 class="lines-effect">OR</h3>
-          <a href="#" id="registerGoogle" class="containerAuth__button-google">
+          <button id="registerGoogle" class="containerAuth__button-google">
             <img src="assets/img/google.png" alt="logo de google">
-            Registrarse con Google
-          </a>
+            Inicia sesión con Google
+          </button>
         </form>
       </div>
       <div class="error"></div>

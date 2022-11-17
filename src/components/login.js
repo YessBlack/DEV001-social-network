@@ -11,10 +11,10 @@ export const login = () => {
           <input class="containerAuth__password-form" placeholder="Contraseña" id="passwordLogin" name="password" type="password">          
           <button class="containerAuth__login-button login" id="login">Ingresar</button>
           <h3 class="lines-effect">OR</h3>
-          <a href="#" id="loginGoogle" class="containerAuth__button-google">
+          <button id="loginGoogle" class="containerAuth__button-google">
             <img src="assets/img/google.png" alt="logo de google">
-            Login con Google
-          </a>
+            Inicia sesión con Google
+          </button>
         </form>
       </div>
       <div class="error"></div>
