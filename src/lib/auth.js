@@ -3,7 +3,9 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   GoogleAuthProvider, signInWithPopup,
-} from 'firebase/auth';
+  sendPasswordResetEmail,
+  signOut,
+} from './imports.js';
 import { app } from './config.js';
 
 console.log(app);
@@ -22,6 +24,13 @@ export const loginUser = (email, password) => {
 export const authenticationGoogle = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  signInWithPopup(auth, provider);
-  return signInWithPopup;
+  return signInWithPopup(auth, provider);
 };
+export const resetContraseña = (email) => {
+  const auth = getAuth();
+  return sendPasswordResetEmail(auth, email);
+};
+export const adios = () => {
+   const auth = getAuth();
+  return signOut(auth);
+}

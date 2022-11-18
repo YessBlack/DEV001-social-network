@@ -1,7 +1,8 @@
 import { welcome } from './welcome.js';
-import { login } from './login.js';
-import { registro } from './registro.js';
-import { timeline } from './Timeline.js';
+import { login, eventLogin } from './login.js';
+import { registro, eventRegistro } from './registro.js';
+import { timeline, hi} from './timeline.js';
+import { resetPassword, eventresetPassword} from './resetpassword.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -18,9 +19,29 @@ export const Router = () => {
   if (hash === '#timeline') {
     return timeline();
   }
+  if (hash === '#recuperar') {
+    return resetPassword();
+  }
   return alert('Error 404');
 };
 
+export const eventsTemplate = () => {
+  /* Eventos del template */
+  window.addEventListener('hashchange', () => {
+    if (window.location.hash === '#registrar') {
+      eventRegistro();
+    }
+    if (window.location.hash === '#login') {
+      eventLogin();
+    }
+    if (window.location.hash === '#recuperar') {
+      eventresetPassword();
+    }
+    if (window.location.hash === '#timeline') {
+      hi();
+    }
+  });
+};
 /*
 
 class Router {

@@ -1,3 +1,5 @@
+import { createUser, authenticationGoogle } from '../lib/auth.js';
+
 export const registro = () => {
   const pageRegistro = `<section class="containerAuth container">   
     <section class="containerAuth__content">
@@ -13,11 +15,11 @@ export const registro = () => {
           <input type="text" class="containerAuth__country-form" placeholder="País" id="country" name="country"><br>          
           <button class="containerAuth__login-button">Registar</button>
           <h3 class="lines-effect">OR</h3>
+          </form>
           <button id="registerGoogle" class="containerAuth__button-google">
-            <img src="assets/img/google.png" alt="logo de google">
-            Inicia sesión con Google
-          </button>
-        </form>
+          <img src="assets/img/google.png" alt="logo de google">
+          Inicia sesión con Google
+        </button>
       </div>
       <div class="error"></div>
     </section>
@@ -26,4 +28,49 @@ export const registro = () => {
   </div>
   </section>`;
   return pageRegistro;
+};
+
+const $ = (selector) => document.querySelector(selector);
+
+export const eventRegistro = () => {
+  const eventosRegistro = $('#registerGoogle').addEventListener('click', async () => {
+    try {
+      const promise = await authenticationGoogle();
+      window.location.hash = '#timeline';
+    } catch (error) {
+      console.log('error');
+    }
+  });
+
+  $('#eye-registro').addEventListener('click', () => {
+    console.log("hi");
+    if ($('.containerAuth__password-form').type === 'password') {
+      $('.containerAuth__password-form').type = 'text';
+      $('#icon').classList.remove('fa-eye-slash');
+      $('#icon').classList.add('fa-eye');
+    } else if ($('.containerAuth__password-form').type === 'text') {
+      $('.containerAuth__password-form').type = 'password';
+      $('#icon').classList.remove('fa-eye');
+      $('#icon').classList.add('fa-eye-slash');
+    }
+  });
+  $('#formRegister').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.target));
+    console.log(data);
+    try {
+      const promise = await createUser(data.email, data.password);
+      alert('Bienvenido');
+      window.location.hash = '#login';
+    } catch (error) {
+      const errorCode = error.code;
+      // eslint-disable-next-line no-unused-vars
+      const errorMessage = error.message;
+      $('.error').insertAdjacentHTML('beforeend', errorCode);
+      setTimeout(() => {
+        $('.error').innerHTML = '';
+      }, 5000);
+    }
+  });
+  return eventosRegistro;
 };
