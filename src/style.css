@@ -12,8 +12,12 @@
     --bgPrimary: rgba(255, 255, 255, .87);
     --paddingGeneral: 1.5rem;
 }
-body{
+body, button{
     font-family: 'Maven Pro', sans-serif;
+}
+button {
+    cursor: pointer;
+    font-size: 16px;
 }
 /* ----------- Pagina de Home ---------*/
 .img-desktop{
@@ -111,7 +115,7 @@ body{
     margin-right: 10px;
  }
  .containerAuth__button-google {
-    width: 90%;
+    width: 80%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -120,7 +124,7 @@ body{
     padding: .3rem;
     text-decoration: none;
     color: black;
-    margin-top: 15px;
+    margin: 15px auto;
     background-color: white;
  }
  .containerAuth__login-button {
@@ -171,7 +175,10 @@ body{
     padding:25px;
  
 }
-
+.icon-reset-pass{
+    color: var(--colorPrimary);
+    font-size: 6rem;
+}
 @media (min-width:430px) {
     .ojo{
         margin-left: 130px;
