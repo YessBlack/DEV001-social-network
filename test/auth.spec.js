@@ -1,17 +1,79 @@
-import { registro } from '../src/components/registro';
+import {
+  createUser,
+  loginUser,
+  authenticationGoogle,
+  resetPasswordEmail,
+  signOutUser,
+} from '../src/lib/auth.js';
 
-/**
- * @jest-environment jsdom
- * @jest-environment-options {"url": "https://jestjs.io/"}
- */
+jest.mock('../src/lib/imports.js');
 
-jest.mock('../src/main.js');
-
-describe('registro', () => {
-  it('El componente debería ser una función', () => {
-    expect(typeof registro).toBe('function');
+describe('createUser', () => {
+  it('Debería ser una función', () => {
+    expect(typeof createUser).toBe('function');
   });
-  it('El componente debería retornar un string', () => {
-    expect(typeof registro()).toBe('string');
+  it('Deberia retornar una promesa', () => {
+    expect(createUser()).toBeInstanceOf(Promise);
+  });
+  it('Debería retornar un objeto', () => {
+    createUser().then((res) => {
+      expect(typeof res).toBe('object');
+    });
+  });
+});
+
+describe('loginUser', () => {
+  it('Debería ser una función', () => {
+    expect(typeof loginUser).toBe('function');
+  });
+  it('Deberia retornar una promesa', () => {
+    expect(loginUser()).toBeInstanceOf(Promise);
+  });
+  it('Debería retornar un objeto', () => {
+    loginUser().then((res) => {
+      expect(typeof res).toBe('object');
+    });
+  });
+});
+
+describe('authenticationGoogle', () => {
+  it('Debería ser una función', () => {
+    expect(typeof authenticationGoogle).toBe('function');
+  });
+  it('Deberia retornar una promesa', () => {
+    expect(authenticationGoogle()).toBeInstanceOf(Promise);
+  });
+  it('Debería retornar un objeto', () => {
+    authenticationGoogle().then((res) => {
+      expect(typeof res).toBe('object');
+    });
+  });
+});
+
+describe('resetPasswordEmail', () => {
+  it('Debería ser una función', () => {
+    expect(typeof resetPasswordEmail).toBe('function');
+  });
+  it('Deberia retornar una promesa', () => {
+    expect(resetPasswordEmail()).toBeInstanceOf(Promise);
+  });
+  it('Debería retornar un objeto', () => {
+    resetPasswordEmail().then((res) => {
+      expect(typeof res).toBe('object');
+    });
+  });
+});
+
+describe('signOutUser', () => {
+  it('Debería ser una función', () => {
+    expect(typeof signOutUser).toBe('function');
+  });
+  it('Deberia retornar una promesa', () => {
+    expect(signOutUser()).toBeInstanceOf(Promise);
+  });
+  it('Debería retornar un objeto', () => {
+    signOutUser().then((res) => {
+      expect(typeof res).toBe('object');
+    });
   });
 });
