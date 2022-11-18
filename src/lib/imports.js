@@ -6,6 +6,6 @@ export {
   signInWithPopup,
   sendPasswordResetEmail,
   signOut,
-  } from 'firebase/auth';
+} from 'firebase/auth';
 
 export { initializeApp } from 'firebase/app';

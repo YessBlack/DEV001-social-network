@@ -1,4 +1,4 @@
-import { Router, eventsTemplate } from './components/router.js';
+import { Router, exeEvents } from './components/Router.js';
 
 const $ = (selector) => document.querySelector(selector);
 
@@ -14,4 +14,4 @@ window.onpopstate = () => {
 window.addEventListener('DOMContentLoaded', render);
 window.addEventListener('hashchange', Router);
 
-eventsTemplate();
+exeEvents();

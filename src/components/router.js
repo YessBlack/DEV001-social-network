@@ -1,8 +1,8 @@
-import { welcome } from './welcome.js';
-import { login, eventLogin } from './login.js';
-import { registro, eventRegistro } from './registro.js';
-import { timeline, hi} from './timeline.js';
-import { resetPassword, eventresetPassword} from './resetpassword.js';
+import { welcome } from './Welcome.js';
+import { login, eventsLogin } from './Login.js';
+import { registro, eventsRegistro } from './Registro.js';
+import { eventsTimeLine, timeline } from './Timeline.js';
+import { eventsResetPassword, resetPassword } from './Recuperar.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -25,57 +25,19 @@ export const Router = () => {
   return alert('Error 404');
 };
 
-export const eventsTemplate = () => {
-  /* Eventos del template */
+export const exeEvents = () => {
   window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#registrar') {
-      eventRegistro();
-    }
     if (window.location.hash === '#login') {
-      eventLogin();
+      eventsLogin();
+    }
+    if (window.location.hash === '#registrar') {
+      eventsRegistro();
     }
     if (window.location.hash === '#recuperar') {
-      eventresetPassword();
+      eventsResetPassword();
     }
     if (window.location.hash === '#timeline') {
-      hi();
+      eventsTimeLine();
     }
   });
 };
-/*
-
-class Router {
-  // constructor
-  constructor(paths) {
-    this.paths = paths;
-    this.initRouter();
-  }
-
-  // Metodo para iniciar el router
-  initRouter() {
-    const { location: { pathname = '/' } } = window;
-    const URL = pathname === '/' ? 'home' : pathname.replace('/', '');
-    this.load(URL);
-  }
-
-  // Metodo para cargar las vistas
-  load(page = 'home') {
-    const { paths } = this;
-    const { path, template } = paths[page] || paths.error;
-    const $root = document.getElementById('root');
-    $root.innerHTML = template;
-    window.history.pushState({}, 'done', path);
-  }
-}
-const ROUTER = new Router(PATHS);
-console.log(ROUTER);
-
-window.addEventListener('hashchange', (e) => {
-  console.log('el evento ', e);
-  console.log(window.history);
-  const newPage = e.newURL.split('#')[1];
-  ROUTER.load(newPage); // window.history.pushState({}, null, myOldUrl);
-});
-
-export default ROUTER;
-*/

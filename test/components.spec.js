@@ -1,6 +1,6 @@
-import { registro } from '../src/components/registro';
-import { login } from '../src/components/login';
-import { welcome } from '../src/components/welcome';
+import { registro } from '../src/components/Registro.js';
+import { login } from '../src/components/Login.js';
+import { welcome } from '../src/components/Welcome.js';
 
 /**
  * @jest-environment jsdom
