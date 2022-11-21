@@ -39,13 +39,13 @@ button {
     text-align: center;
     border-radius: 10px;
     background-color: var(--bgPrimary);
-    width: 90%;
+    width:90%;
     height: 100%;    
     margin: auto;
     padding: var(--paddingGeneral);
     border: 1px solid rgba(255, 15, 0, 0.2);
     box-shadow: rgba(255, 15, 0, 0.4) 0px 7px 15px;
-}
+   }
 .container__buttons-content {
     display: flex;
     flex-direction: column;
@@ -60,6 +60,10 @@ button {
     border-radius: 10px;
     width: 150px;
     text-align: center;
+    cursor:pointer;
+}
+button{
+    cursor :pointer;
 }
 .container__title-content {
     font-size: 1.3rem;
@@ -157,11 +161,12 @@ button {
     padding:4px;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
+/* ------------------- Ocultar/mostar password-----------------*/
 .ojo{
     position:relative;
     margin-left: 35%;
 }
-.eye{
+    .eye{
     cursor: pointer;
     position:absolute;
     transform: translateY(-50);
@@ -178,7 +183,21 @@ button {
 .icon-reset-pass{
     color: var(--colorPrimary);
     font-size: 6rem;
-}
+    }
+   /* ------------------------ Errores Inputs ---------------------- */
+   .inputs-vacios{
+    font-size:medium;
+    color:#FF0F00;
+   }
+ .error-mail{
+    font-size:small;
+    color:#FF0F00;
+ }
+ .error-password{
+    font-size:small;
+    color:#FF0F00;
+ }
+/* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {
     .ojo{
         margin-left: 130px;
@@ -193,6 +212,16 @@ button {
 
 
 /* ------------------- Media Querys -----------------*/
+@media (min-width:430px) {
+    .ojo{
+        margin-left: 130px;
+    }
+}
+@media (min-width:674px) {
+    .ojo{
+        margin-left: 150px;
+    }
+}
 @media (min-width:1024px) {
     .img-desktop{
         display: block;

@@ -12,6 +12,8 @@ import {
 // eslint-disable-next-line no-unused-vars
 import { app } from './config.js';
 
+console.log(app);
+
 export const createUser = (email, password) => {
   const auth = getAuth();
   const promise = createUserWithEmailAndPassword(auth, email, password);

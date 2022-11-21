@@ -20,6 +20,7 @@ export const resetPassword = () => {
   return pageResetPassword;
 };
 
+
 export const eventsResetPassword = () => {
   const $ = (selector) => document.querySelector(selector);
   $('#formResetPassword').addEventListener('submit', (e) => {
@@ -29,7 +30,6 @@ export const eventsResetPassword = () => {
     console.log(promise);
     promise.then(() => {
       alert('email enviado');
-      window.location.hash='#login';
     });
     promise.catch(console.error());
   });

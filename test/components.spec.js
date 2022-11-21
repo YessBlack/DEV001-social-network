@@ -1,23 +1,35 @@
-import { registro, eventsRegistro } from '../src/components/Registro';
+import { registro } from '../src/components/Registro.js';
+import { login } from '../src/components/Login.js';
+import { welcome } from '../src/components/Welcome.js';
 
 /**
  * @jest-environment jsdom
  * @jest-environment-options {"url": "https://jestjs.io/"}
  */
 
-jest.mock('../src/main.js');
-
 describe('registro', () => {
-  it('El componente debería ser una función', () => {
+  it('debería ser una función', () => {
     expect(typeof registro).toBe('function');
   });
-  it('El componente debería retornar un string', () => {
+  it('debería retornar un string', () => {
     expect(typeof registro()).toBe('string');
   });
 });
 
-describe('eventsRegistro', () => {
-  it('El componente debería ser una función', () => {
-    expect(typeof eventsRegistro).toBe('function');
+describe('login', () => {
+  it('debería ser una función', () => {
+    expect(typeof login).toBe('function');
+  });
+  it('debería retornar un string', () => {
+    expect(typeof login()).toBe('string');
+  });
+});
+
+describe('welcome', () => {
+  it('debería ser una función', () => {
+    expect(typeof welcome).toBe('function');
+  });
+  it('debería retornar un string', () => {
+    expect(typeof welcome()).toBe('string');
   });
 });
