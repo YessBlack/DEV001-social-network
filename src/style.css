@@ -183,7 +183,21 @@ button{
 .icon-reset-pass{
     color: var(--colorPrimary);
     font-size: 6rem;
-}
+    }
+   /* ------------------------ Errores Inputs ---------------------- */
+   .inputs-vacios{
+    font-size:medium;
+    color:#FF0F00;
+   }
+ .error-mail{
+    font-size:small;
+    color:#FF0F00;
+ }
+ .error-password{
+    font-size:small;
+    color:#FF0F00;
+ }
+/* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {
     .ojo{
         margin-left: 130px;

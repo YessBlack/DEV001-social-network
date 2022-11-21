@@ -6,11 +6,14 @@ export const login = () => {
       <h1 class="containerAuth__title-content">Inicia sesion</h1>
       <div class= "containerAuth__register-content">
         <form class="containerAuth__form-register" id="formLogin">
+        <p class="inputs-vacios"></p>
           <input class="containerAuth__email-form" placeholder="email" id="emailLogin" name="email">         
+          <p class="error-mail"></p>
           <div class="ojo">
             <span id="eye" class="eye-registro"><i id="icon" class="fa-sharp fa-solid fa-eye-slash"></i></span>
           </div> 
           <input class="containerAuth__password-form " placeholder="Contraseña" id="passwordLogin" name="password" type="password">                    
+          <p class="error-password"></p>
           <button class="containerAuth__login-button login" id="login">Ingresar</button>
           <h3 class="lines-effect">OR</h3>          
         </form>
@@ -28,14 +31,10 @@ export const login = () => {
   </section>`;
   return pageLogin;
 };
-   
-const $ = (selector) => document.querySelector(selector);
 
-export const eventLogin = () => {
-  const eventosLogin = $('#prueba').addEventListener('click', () => {
-    window.location, hash = '#recuperar';
-  });
-
+export const eventsLogin = () => {
+  /* Ocultar y mostrar contraseña */
+  const $ = (selector) => document.querySelector(selector);
   $('#eye').addEventListener('click', () => {
     if ($('.containerAuth__password-form').type === 'password') {
       $('.containerAuth__password-form').type = 'text';
@@ -47,61 +46,40 @@ export const eventLogin = () => {
       $('#icon').classList.add('fa-eye-slash');
     }
   });
-  $('#loginGoogle').addEventListener('click', async () => {
-    try {
-      const promise = await authenticationGoogle();
-      window.location.hash = '#timeline';
-    } catch (error) {
-      console.log('error');
-    }
-  });
-  $('#formLogin').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const data = Object.fromEntries(new FormData(e.target));
-    try {
-      const promise = await loginUser(data.email, data.password);
-      alert('Bienvenido');
-      window.location.hash = '#timeline';
-    } catch (error) {
-      const errorCode = error.code;
-      // eslint-disable-next-line no-unused-vars
-      const errorMessage = error.message;
-      $('.error').insertAdjacentHTML('beforeend', errorCode);
-      setTimeout(() => {
-        $('.error').innerHTML = '';
-      }, 5000);
-    }
-  });
-  return eventosLogin;
-};
-
-export const eventsLogin = () => {
-  const $ = (selector) => document.querySelector(selector);
-  $('#eye').addEventListener('click', () => {
-    if ($('.containerAuth__password-form').type === 'password') {
-      $('.containerAuth__password-form').type = 'text';
-      $('#icon').classList.remove('fa-eye-slash');
-      $('#icon').classList.add('fa-eye');
-    } else {
-      $('.containerAuth__password-form').type = 'text';
-      $('.containerAuth__password-form').type = 'password';
-      $('#icon').classList.remove('fa-eye');
-      $('#icon').classList.add('fa-eye-slash');
-    }
-  });
-
+  /* Iniciar sesión con email y contraseña */
   $('#formLogin').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
     const promise = loginUser(data.email, data.password);
-    promise.then(() => {
-      window.location.hash = '#timeline';
-    });
-    promise.catch((error) => {
-      console.log(error);
-    });
+    if ($('#emailLogin') || $('#passwordLogin') === '') {
+      $('.inputs-vacios').innerHTML = 'Todos los campos son obligatorios';
+      $('#emailLogin').style.borderColor = 'red';
+      $('#passwordLogin').style.borderColor = 'red';
+    } else {
+      promise.then(() => {
+        window.location.hash = '#timeline';
+      });
+      promise.catch((error) => {
+        console.log(error);
+        const errorCode = error.code;
+        if (errorCode.includes('auth/invalid-email')) {
+          $('#emailLogin').style.borderColor = 'red';
+          $('.error-mail').innerHTML = 'e-mail invalido';
+          setTimeout(() => {
+            $('.error-mail').innerHTML = '';
+          }, 5000);
+        }
+        if (errorCode.includes('auth/wrong-password')) {
+          $('#passwordLogin').style.borderColor = 'red';
+          $('.error-password').innerHTML = 'Contraseña invalida';
+          setTimeout(() => {
+            $('.error-password').innerHTML = '';
+          }, 5000);
+        }
+      });
+    }
   });
-
+  /* Iniciar sesión con google */
   $('#loginGoogle').addEventListener('click', () => {
     const promise = authenticationGoogle();
     promise.then(() => {
