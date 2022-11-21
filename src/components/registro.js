@@ -1,3 +1,4 @@
+import { AuthErrorCodes } from 'firebase/auth';
 import { createUser, authenticationGoogle } from '../lib/auth.js';
 
 export const registro = () => {
@@ -44,13 +45,13 @@ export const eventsRegistro = () => {
     promise.catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      $('.error').insertAdjacentHTML('beforeend', errorCode);
-      setTimeout(() => {
-        $('.error').innerHTML = '';
-      }, 5000);
+      //  // $('.error').insertAdjacentHTML('beforeend', errorCode);
+      if (errorMessage.includes('invalid - email')) {
+        console.log('hello');
+      }
+    })
     });
-  });
+  
 
   $('#registerGoogle').addEventListener('click', (e) => {
     e.preventDefault();
