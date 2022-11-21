@@ -6,6 +6,7 @@ export const login = () => {
       <h1 class="containerAuth__title-content">Inicia sesion</h1>
       <div class= "containerAuth__register-content">
         <form class="containerAuth__form-register" id="formLogin">
+          <p class="error"></p>
           <input class="containerAuth__email-form" placeholder="email" id="emailLogin" name="email">         
           <div class="ojo">
             <span id="eye" class="eye-registro"><i id="icon" class="fa-sharp fa-solid fa-eye-slash"></i></span>
@@ -31,6 +32,7 @@ export const login = () => {
 
 export const eventsLogin = () => {
   const $ = (selector) => document.querySelector(selector);
+
   $('#eye').addEventListener('click', () => {
     if ($('.containerAuth__password-form').type === 'password') {
       $('.containerAuth__password-form').type = 'text';
