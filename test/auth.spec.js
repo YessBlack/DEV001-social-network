@@ -6,6 +6,8 @@ import {
   signOutUser,
 } from '../src/lib/auth.js';
 
+import { getAuth, createUserWithEmailAndPassword } from '../src/lib/imports.js';
+
 jest.mock('../src/lib/imports.js');
 
 describe('createUser', () => {
@@ -13,7 +15,9 @@ describe('createUser', () => {
     expect(typeof createUser).toBe('function');
   });
   it('Deberia retornar una promesa', () => {
-    expect(createUser()).toBeInstanceOf(Promise);
+    getAuth.mockImplementationOnce(() => 'hola');
+    const create = createUserWithEmailAndPassword.mockImplementation(() => Promise.resolve({}));
+    expect(createUser('email', 'password')).toBeInstanceOf(Promise);
   });
   it('Debería retornar un objeto', () => {
     createUser().then((res) => {

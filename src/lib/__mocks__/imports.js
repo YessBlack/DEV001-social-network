@@ -1,8 +1,13 @@
-export class GoogleAuthProvider {}
-export const createUserWithEmailAndPassword = () => Promise.resolve({});
-export const getAuth = () => {};
-export const signInWithEmailAndPassword = () => Promise.resolve({});
-export const signInWithPopup = () => Promise.resolve({});
-export const sendPasswordResetEmail = () => Promise.resolve({});
-export const initializeApp = () => Promise.resolve({});
-export const signOut = () => Promise.resolve({});
+export const googleAuthProviderHelper = jest.fn();
+export class GoogleAuthProvider {
+  constructor() {
+    googleAuthProviderHelper();
+  }
+}
+export const createUserWithEmailAndPassword = jest.fn();
+export const getAuth = jest.fn();
+export const signInWithEmailAndPassword = jest.fn();
+export const signInWithPopup = jest.fn();
+export const sendPasswordResetEmail = jest.fn();
+export const initializeApp = jest.fn();
+export const signOut = jest.fn();

@@ -29,7 +29,6 @@ export const eventsResetPassword = () => {
     console.log(promise);
     promise.then(() => {
       alert('email enviado');
-      window.location.hash = '#login';
     });
     promise.catch(console.error());
   });
