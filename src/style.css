@@ -182,17 +182,20 @@ button {
     font-size: 6rem;
     }
    /* ------------------------ Errores Inputs ---------------------- */
-   .inputs-vacios{
+.inputs-vacios{
     font-size:medium;
     color:#FF0F00;
-   }
+    font-weight: bold;
+}
  .error-mail{
     font-size:small;
     color:#FF0F00;
+    font-weight: bold;
  }
  .error-password{
     font-size:small;
     color:#FF0F00;
+    font-weight: bold;
  }
 /* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {

@@ -6,16 +6,16 @@ export const registro = () => {
       <h1 class="containerAuth__title-content">Registrate</h1>
       <div class= "containerAuth__register-content">
         <form class="containerAuth__form-register" id="formRegister">
-        <p class="inputs-vacios"></p>
-          <input type="text" class="containerAuth__name-form" id="name" placeholder="name" name="name">
+          <p class="inputs-vacios"></p>          
+          <input type="text" class="containerAuth__name-form" id="name" placeholder="name" name="name">          
           <p class="error-mail"></p>
           <input class="containerAuth__email-form" placeholder="email" id="email" name="email">
           <div class="ojo">
             <span id="eye-registro" class="eye-registro"><i id="icon" class="fa-sharp fa-solid fa-eye-slash"></i></span>
-          </div>   
-          <p class="error-password"></p>       
+          </div>                   
           <input class="containerAuth__password-form " placeholder="Contraseña" id="password" name="password" type="password">
-                    <input type="text" class="containerAuth__country-form password-eye" placeholder="País" id="country" name="country"><br>          
+          <p class="error-password"></p> 
+          <input type="text" class="containerAuth__country-form password-eye" placeholder="País" id="country" name="country"><br>          
           <button class="containerAuth__login-button">Registarse</button>
           <h3 class="lines-effect">OR</h3>          
         </form>

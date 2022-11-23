@@ -1,8 +1,13 @@
+import { beforeAuthStateChanged } from 'firebase/auth';
 import { registro, eventsRegistro } from '../src/components/Registro.js';
 import { welcome } from '../src/components/Welcome.js';
 // eslint-disable-next-line import/named
 import {
-  getAuth, signInWithPopup, googleAuthProviderHelper, createUserWithEmailAndPassword,
+  getAuth,
+  signInWithPopup,
+  // eslint-disable-next-line import/named
+  googleAuthProviderHelper,
+  createUserWithEmailAndPassword,
 } from '../src/lib/imports.js';
 
 jest.mock('../src/lib/imports.js');
@@ -10,6 +15,10 @@ jest.mock('../src/lib/imports.js');
  * @jest-environment jsdom
  */
 
+beforeEach(() => {
+  document.body.innerHTML = registro();
+  eventsRegistro();
+});
 describe('welcome', () => {
   it('debería ser una función', () => {
     expect(typeof welcome).toBe('function');
@@ -53,7 +62,7 @@ describe('eventsRegistro', () => {
     expect($('.error-mail').getAttribute('class')).toBe('error-mail');
   });
 
-  it.only('Deberia disparar un evento submit para registrar con email y password', (done) => {
+  it('Deberia disparar un evento submit para registrar con email y password', (done) => {
     createUserWithEmailAndPassword.mockImplementation(() => Promise.resolve({}));
     document.body.innerHTML = '';
     const div = document.createElement('div');
@@ -68,8 +77,6 @@ describe('eventsRegistro', () => {
       expect(window.location.hash).toBe('#timeline');
       done();
     });
-
-    it('Deberia retornar ');
   });
 
   it('Deberia disparar un evento click para registrar con Google', (done) => {
