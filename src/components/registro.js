@@ -39,7 +39,6 @@ export const eventsRegistro = () => {
   $('#formRegister').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    const promise = createUser(data.email, data.password);
     if (data.email === '' || data.password === '') {
       $('.inputs-vacios').innerHTML = 'Todos los campos son obligatorios';
       $('#name').style.borderColor = 'red';
@@ -50,27 +49,27 @@ export const eventsRegistro = () => {
         $('.inputs-vacios').innerHTML = '';
       }, 5000);
     }
-    promise.then((res) => {
-      console.log(res);
-      window.location.hash = '#timeline';
-    });
-    promise.catch((error) => {
-      const errorCode = error.code;
-      if (errorCode.includes('auth/email-already-in-use')) {
-        $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
-        setTimeout(() => {
-          $('.error-mail').innerHTML = '';
-        }, 5000);
-      }
-      if (errorCode.includes('auth/weak-password')) {
-        $('.error-password').innerHTML = 'La contraseña debe tener mínimo 6 cáracteres';
-        setTimeout(() => {
-          $('.error-password').innerHTML = '';
-        }, 5000);
-      }
-    });
+    const promise = createUser(data.email, data.password);
+    promise
+      .then(() => {
+        window.location.hash = '#timeline';
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        if (errorCode.includes('auth/email-already-in-use')) {
+          $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
+          setTimeout(() => {
+            $('.error-mail').innerHTML = '';
+          }, 5000);
+        }
+        if (errorCode.includes('auth/weak-password')) {
+          $('.error-password').innerHTML = 'La contraseña debe tener mínimo 6 cáracteres';
+          setTimeout(() => {
+            $('.error-password').innerHTML = '';
+          }, 5000);
+        }
+      });
   });
-
   /* Iniciar sesión con google */
   $('#registerGoogle').addEventListener('click', (e) => {
     e.preventDefault();
@@ -83,6 +82,7 @@ export const eventsRegistro = () => {
         console.log(error);
       });
   });
+
   /* Ocultar y mostrar contraseña */
   $('#eye-registro').addEventListener('click', () => {
     if ($('.containerAuth__password-form').type === 'password') {

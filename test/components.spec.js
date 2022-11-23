@@ -1,7 +1,9 @@
 import { registro, eventsRegistro } from '../src/components/Registro.js';
 import { welcome } from '../src/components/Welcome.js';
 // eslint-disable-next-line import/named
-import { getAuth, signInWithPopup, googleAuthProviderHelper } from '../src/lib/imports.js';
+import {
+  getAuth, signInWithPopup, googleAuthProviderHelper, createUserWithEmailAndPassword,
+} from '../src/lib/imports.js';
 
 jest.mock('../src/lib/imports.js');
 /**
@@ -51,7 +53,27 @@ describe('eventsRegistro', () => {
     expect($('.error-mail').getAttribute('class')).toBe('error-mail');
   });
 
+  it.only('Deberia disparar un evento submit para registrar con email y password', (done) => {
+    createUserWithEmailAndPassword.mockImplementation(() => Promise.resolve({}));
+    document.body.innerHTML = '';
+    const div = document.createElement('div');
+    div.innerHTML = registro();
+    document.body.appendChild(div);
+    eventsRegistro();
+    const form = document.querySelector('#formRegister');
+    const event = new Event('submit');
+    form.dispatchEvent(event);
+    expect(event.type).toBe('submit');
+    window.addEventListener('hashchange', () => {
+      expect(window.location.hash).toBe('#timeline');
+      done();
+    });
+
+    it('Deberia retornar ');
+  });
+
   it('Deberia disparar un evento click para registrar con Google', (done) => {
+    document.body.innerHTML = '';
     getAuth.mockImplementationOnce(() => 'hola');
     signInWithPopup.mockImplementationOnce((auth) => {
       expect(auth).toBe('hola');
