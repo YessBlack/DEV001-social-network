@@ -104,3 +104,7 @@ describe('signOutUser', () => {
     });
   });
 });
+
+afterEach(() => {
+  jest.clearAllMocks();
+});
