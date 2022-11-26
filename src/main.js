@@ -4,14 +4,12 @@ const $ = (selector) => document.querySelector(selector);
 
 const render = () => {
   $('#root').innerHTML = Router();
+  exeEvents();
 };
 
 window.onpopstate = () => {
-  $('#root').innerHTML = '';
   $('#root').innerHTML = Router();
 };
 
 window.addEventListener('DOMContentLoaded', render);
-window.addEventListener('hashchange', Router);
-
-exeEvents();
+window.addEventListener('hashchange', render);

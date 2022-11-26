@@ -1,4 +1,4 @@
-import { loginUser, authenticationGoogle } from '../lib/auth.js';
+import { loginUser, loginGoogle } from '../lib/auth.js';
 
 export const login = () => {
   const pageLogin = `<section class="containerAuth container">    
@@ -88,7 +88,7 @@ export const eventsLogin = () => {
   });
   /* Iniciar sesión con google */
   $('#loginGoogle').addEventListener('click', () => {
-    const promise = authenticationGoogle();
+    const promise = loginGoogle();
     promise.then(() => {
       window.location.hash = '#timeline';
     });

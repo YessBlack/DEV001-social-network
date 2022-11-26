@@ -1,4 +1,4 @@
-import { createUser, authenticationGoogle } from '../lib/auth.js';
+import { createUser, loginGoogle } from '../lib/auth.js';
 
 export const registro = () => {
   const pageRegistro = `<section class="containerAuth container">   
@@ -48,32 +48,33 @@ export const eventsRegistro = () => {
       setTimeout(() => {
         $('.inputs-vacios').innerHTML = '';
       }, 5000);
+    } else {
+      createUser(data.email, data.password)
+        .then(() => {
+          window.location.hash = '#timeline';
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          if (errorCode === 'auth/email-already-in-use') {
+            $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
+            setTimeout(() => {
+              $('.error-mail').innerHTML = '';
+            }, 5000);
+          }
+          if (errorCode === 'auth/weak-password') {
+            $('.error-password').innerHTML = 'La contraseña debe tener mínimo 6 cáracteres';
+            setTimeout(() => {
+              $('.error-password').innerHTML = '';
+            }, 5000);
+          }
+        });
     }
-    const promise = createUser(data.email, data.password);
-    promise
-      .then(() => {
-        window.location.hash = '#timeline';
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        if (errorCode.includes('auth/email-already-in-use')) {
-          $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
-          setTimeout(() => {
-            $('.error-mail').innerHTML = '';
-          }, 5000);
-        }
-        if (errorCode.includes('auth/weak-password')) {
-          $('.error-password').innerHTML = 'La contraseña debe tener mínimo 6 cáracteres';
-          setTimeout(() => {
-            $('.error-password').innerHTML = '';
-          }, 5000);
-        }
-      });
   });
+
   /* Iniciar sesión con google */
   $('#registerGoogle').addEventListener('click', (e) => {
     e.preventDefault();
-    const promise = authenticationGoogle();
+    const promise = loginGoogle();
     promise
       .then(() => {
         window.location.hash = '#timeline';

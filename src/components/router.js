@@ -22,22 +22,23 @@ export const Router = () => {
   if (hash === '#recuperar') {
     return resetPassword();
   }
-  return alert('Error 404');
+  return welcome();
 };
 
 export const exeEvents = () => {
-  window.addEventListener('hashchange', () => {
-    if (window.location.hash === '#login') {
-      eventsLogin();
-    }
-    if (window.location.hash === '#registrar') {
-      eventsRegistro();
-    }
-    if (window.location.hash === '#recuperar') {
-      eventsResetPassword();
-    }
-    if (window.location.hash === '#timeline') {
-      eventsTimeLine();
-    }
-  });
+  // eslint-disable-next-line no-restricted-globals
+  const hash = location.hash;
+  if (hash === '#registrar') {
+    return eventsRegistro();
+  }
+  if (hash === '#login') {
+    return eventsLogin();
+  }
+  if (hash === '#timeline') {
+    return eventsTimeLine();
+  }
+  if (hash === '#recuperar') {
+    return eventsResetPassword();
+  }
+  return welcome();
 };
