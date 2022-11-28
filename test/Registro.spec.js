@@ -1,5 +1,5 @@
 import { registro, eventsRegistro } from '../src/components/Registro.js';
-import { loginGoogle } from '../src/lib/auth.js';
+import { createUser, loginGoogle } from '../src/lib/auth.js';
 
 jest.mock('../src/lib/auth.js');
 
@@ -58,30 +58,29 @@ describe('eventsRegistro', () => {
     $('#email').value = 'reject@gmail.com';
     $('#password').value = '123hdfh';
     $('#formRegister').dispatchEvent(event);
-    $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
     setTimeout(() => {
-      try {
-        expect($('.error-mail').innerHTML).toBe('Este email ya se encuentra en uso');
-      } catch (error) {
-        console.log(error);
-        expect(error.code).toMatch('auth/email-already-in-use');
-        done();
-      }
+      const promise = createUser('reject@gmail.com', '123hdfh');
+      promise
+        .catch((error) => {
+          expect(error.code).toBe('auth/email-already-in-use');
+          done();
+        });
     }, 1000);
   });
 
   it('Deberia mostrar un error si la contraseña es muy corta', (done) => {
+    window.location.hash = '#registrar';
     const event = new Event('submit');
     $('#email').value = 'reject1@gmail.com';
-    $('#password').value = 'asd';
+    $('#password').value = '123h';
     $('#formRegister').dispatchEvent(event);
     setTimeout(() => {
-      try {
-        expect($('.error-password').innerHTML).toBe('La contraseña debe tener mínimo 6 cáracteres');
-      } catch (error) {
-        expect(error.code).toMatch('auth/weak-password');
-        done();
-      }
+      const promise = createUser('reject1@gmail.com', '123f');
+      promise
+        .catch((error) => {
+          expect(error.code).toBe('auth/weak-password');
+          done();
+        });
     }, 1000);
   });
 

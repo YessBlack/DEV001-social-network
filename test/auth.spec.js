@@ -11,8 +11,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
-  // eslint-disable-next-line import/named
-  googleAuthProviderHelper,
   sendPasswordResetEmail,
   signOut,
 } from '../src/lib/imports.js';
