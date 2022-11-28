@@ -1,7 +1,7 @@
 import {
   createUser,
   loginUser,
-  authenticationGoogle,
+  loginGoogle,
   resetPasswordEmail,
   signOutUser,
 } from '../src/lib/auth.js';
@@ -11,8 +11,6 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
-  // eslint-disable-next-line import/named
-  googleAuthProviderHelper,
   sendPasswordResetEmail,
   signOut,
 } from '../src/lib/imports.js';
@@ -20,88 +18,96 @@ import {
 jest.mock('../src/lib/imports.js');
 
 describe('createUser', () => {
+  beforeEach(() => {
+    getAuth.mockImplementationOnce(() => 'hola');
+    createUserWithEmailAndPassword.mockImplementation(() => Promise.resolve('resolve'));
+  });
+
   it('Debería ser una función', () => {
     expect(typeof createUser).toBe('function');
   });
+
   it('Deberia retornar una promesa', () => {
-    getAuth.mockImplementationOnce(() => 'hola');
-    createUserWithEmailAndPassword.mockImplementationOnce(() => Promise.resolve({}));
     expect(createUser()).toBeInstanceOf(Promise);
   });
-  it('Debería retornar un objeto', () => {
-    createUserWithEmailAndPassword.mockImplementationOnce(() => Promise.resolve({}));
-    createUser().then((res) => {
-      expect(typeof res).toBe('object');
-    });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(createUser()).resolves.toBe('resolve');
   });
 });
 
 describe('login', () => {
+  beforeEach(() => {
+    getAuth.mockImplementationOnce(() => 'hola');
+    signInWithEmailAndPassword.mockImplementation(() => Promise.resolve('resolve'));
+  });
+
   it('Debería ser una función', () => {
     expect(typeof createUser).toBe('function');
   });
+
   it('Deberia retornar una promesa', () => {
-    signInWithEmailAndPassword.mockImplementationOnce(() => Promise.resolve({}));
     expect(loginUser()).toBeInstanceOf(Promise);
   });
-  it('Debería retornar un objeto', () => {
-    signInWithEmailAndPassword.mockImplementationOnce(() => Promise.resolve({}));
-    loginUser().then((res) => {
-      expect(typeof res).toBe('object');
-    });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(loginUser()).resolves.toBe('resolve');
   });
 });
 
-describe('authenticationGoogle', () => {
-  it('Debería ser una función', () => {
-    expect(typeof authenticationGoogle).toBe('function');
-  });
-  it('Deberia retornar una promesa', () => {
+describe('loginGoogle', () => {
+  beforeEach(() => {
     getAuth.mockImplementationOnce(() => 'hola');
-    signInWithPopup.mockImplementationOnce((auth) => {
-      expect(auth).toBe('hola');
-      expect(googleAuthProviderHelper).toHaveBeenCalled();
-      return Promise.resolve({});
-    });
-    expect(authenticationGoogle()).toBeInstanceOf(Promise);
+    signInWithPopup.mockImplementationOnce(() => Promise.resolve('resolve'));
   });
-  it('Debería retornar un objeto', () => {
-    signInWithPopup.mockImplementationOnce(() => Promise.resolve({}));
-    authenticationGoogle().then((res) => {
-      expect(typeof res).toBe('object');
-    });
+
+  it('Debería ser una función', () => {
+    expect(typeof loginGoogle).toBe('function');
+  });
+
+  it('Deberia retornar una promesa', () => {
+    expect(loginGoogle()).toBeInstanceOf(Promise);
+  });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(loginGoogle()).resolves.toBe('resolve');
   });
 });
 
 describe('resetPasswordEmail', () => {
+  beforeEach(() => {
+    getAuth.mockImplementationOnce(() => 'hola');
+    sendPasswordResetEmail.mockImplementation(() => Promise.resolve('resolve'));
+  });
+
   it('Debería ser una función', () => {
     expect(typeof resetPasswordEmail).toBe('function');
   });
   it('Deberia retornar una promesa', () => {
-    sendPasswordResetEmail.mockImplementationOnce(() => Promise.resolve({}));
     expect(resetPasswordEmail()).toBeInstanceOf(Promise);
   });
-  it('Debería retornar un objeto', () => {
-    sendPasswordResetEmail.mockImplementationOnce(() => Promise.resolve({}));
-    resetPasswordEmail().then((res) => {
-      expect(typeof res).toBe('object');
-    });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(resetPasswordEmail()).resolves.toBe('resolve');
   });
 });
 
 describe('signOutUser', () => {
+  beforeEach(() => {
+    getAuth.mockImplementationOnce(() => 'hola');
+    signOut.mockImplementationOnce(() => Promise.resolve('resolve'));
+  });
+
   it('Debería ser una función', () => {
     expect(typeof signOutUser).toBe('function');
   });
+
   it('Deberia retornar una promesa', () => {
-    signOut.mockImplementationOnce(() => Promise.resolve({}));
     expect(signOutUser()).toBeInstanceOf(Promise);
   });
-  it('Debería retornar un objeto', () => {
-    signOut.mockImplementationOnce(() => Promise.resolve({}));
-    signOutUser().then((res) => {
-      expect(typeof res).toBe('object');
-    });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(signOutUser()).resolves.toBe('resolve');
   });
 });
 

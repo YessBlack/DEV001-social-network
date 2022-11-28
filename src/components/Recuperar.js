@@ -26,7 +26,6 @@ export const eventsResetPassword = () => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
     const promise = resetPasswordEmail(data.email);
-    console.log(promise);
     promise.then(() => {
       alert('email enviado');
       window.location.hash = '#login';

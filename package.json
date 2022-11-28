@@ -18,6 +18,7 @@
     "test": "jest --coverage --env=jsdom",
     "testing": "jest --watch",
     "start": "vite dev src",
+    "testNico":"jest --watch --env=jsdom",
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "./deploy.sh"
