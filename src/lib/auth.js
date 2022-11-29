@@ -6,6 +6,8 @@ import {
   signInWithPopup,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged,
+  updateProfile,
 }
   from './imports.js';
 
@@ -23,3 +25,7 @@ export const loginGoogle = () => signInWithPopup(auth, new GoogleAuthProvider())
 export const resetPasswordEmail = (email) => sendPasswordResetEmail(auth, email);
 
 export const signOutUser = () => signOut(auth);
+
+export const authState = (user) => onAuthStateChanged(auth, user);
+
+export const updateProfileUser = (user) => updateProfile(auth.currentUser, user);

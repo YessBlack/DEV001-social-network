@@ -23,7 +23,7 @@ export const login = () => {
         </button>
         <a href="#recuperar" class="containerAuth__register-link" id="prueba">¿Olvidaste tu contraseña?</a>
       </div>
-      <div class="error"></div>
+      <p>¿No tienes cuenta? <a href="#registrar" class="containerAuth__register-link">Registrate</a></p>
     </section>
     <div class="img-desktop">
     <img src="assets/img/background_principal__rec.jpg">

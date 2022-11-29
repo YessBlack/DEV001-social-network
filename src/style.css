@@ -197,6 +197,31 @@ button {
     color:#FF0F00;
     font-weight: bold;
  }
+ .header__timeline {
+    padding: .3rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr 300px;
+    grid-template-rows: 60px;
+    place-items: center;
+    justify-content: space-between;
+     box-shadow: rgba(214, 79, 16, 0.24) 0px 3px 8px;
+ }
+ .info-usuario {
+    display: flex;
+    align-items: center;
+    }
+.info-usuario img {
+    width: 50px;
+    margin-left: .5rem;
+    border-radius: 50px;
+    margin-right: .5rem;
+}
+ .header__logo img {
+    position: sticky;
+    margin-top: 45px;
+    width: 150px;
+ }
 /* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {
     .ojo{

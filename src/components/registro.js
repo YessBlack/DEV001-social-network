@@ -1,4 +1,6 @@
-import { createUser, loginGoogle } from '../lib/auth.js';
+import { createUser, loginGoogle, updateProfileUser } from '../lib/auth.js';
+import { addUser } from '../lib/create.js';
+import { mayuscula } from '../lib/index.js';
 
 export const registro = () => {
   const pageRegistro = `<section class="containerAuth container">   
@@ -50,8 +52,25 @@ export const eventsRegistro = () => {
       }, 5000);
     } else {
       createUser(data.email, data.password)
-        .then(() => {
-          window.location.hash = '#timeline';
+        .then((res) => {
+          updateProfileUser({
+            displayName: mayuscula(data.name),
+            photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
+          });
+          const user = {
+            id: res.user.uid,
+            name: mayuscula(data.name),
+            email: mayuscula(data.email),
+            country: mayuscula(data.country),
+            photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
+          };
+          addUser(user)
+            .then(() => {
+              window.location.hash = '#timeline';
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -76,8 +95,21 @@ export const eventsRegistro = () => {
     e.preventDefault();
     const promise = loginGoogle();
     promise
-      .then(() => {
-        window.location.hash = '#timeline';
+      .then((res) => {
+        const user = {
+          id: res.user.uid,
+          name: mayuscula(res.user.displayName),
+          email: mayuscula(res.user.email),
+          country: '',
+          photo: res.user.photoURL,
+        };
+        addUser(user)
+          .then(() => {
+            window.location.hash = '#timeline';
+          })
+          .catch((error) => {
+            console.log(error);
+          });
       })
       .catch((error) => {
         console.log(error);

@@ -18,7 +18,7 @@
     "test": "jest --coverage --env=jsdom",
     "testing": "jest --watch",
     "start": "vite dev src",
-    "testNico":"jest --watch --env=jsdom",
+    "testNico": "jest --watch --env=jsdom",
     "build": "vite build",
     "preview": "vite preview",
     "deploy": "./deploy.sh"
@@ -43,6 +43,6 @@
     "firebase": "^9.14.0"
   },
   "jest": {
-    "testEnvironment": "jsdom"    
+    "testEnvironment": "jsdom"
   }
 }
