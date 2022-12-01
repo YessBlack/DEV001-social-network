@@ -64,7 +64,7 @@ export const eventsRegistro = () => {
             country: mayuscula(data.country),
             photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
           };
-          addUser(user)
+          addUser(user, user.id)
             .then(() => {
               window.location.hash = '#timeline';
             })
@@ -103,7 +103,7 @@ export const eventsRegistro = () => {
           country: '',
           photo: res.user.photoURL,
         };
-        addUser(user)
+        addUser(user, user.id)
           .then(() => {
             window.location.hash = '#timeline';
           })
