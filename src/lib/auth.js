@@ -28,4 +28,6 @@ export const signOutUser = () => signOut(auth);
 
 export const authState = (user) => onAuthStateChanged(auth, user);
 
-export const updateProfileUser = (user) => updateProfile(auth.currentUser, user);
+export const updateProfileUser = (name, img) => updateProfile(auth.currentUser, {
+  displayName: name, photoURL: img,
+});

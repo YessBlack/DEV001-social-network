@@ -52,24 +52,13 @@ export const eventsRegistro = () => {
       }, 5000);
     } else {
       createUser(data.email, data.password)
-        .then((res) => {
-          updateProfileUser({
-            displayName: mayuscula(data.name),
-            photoURL: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
-          });
-          const user = {
-            id: res.user.uid,
-            name: mayuscula(data.name),
-            email: mayuscula(data.email),
-            country: mayuscula(data.country),
-            photo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
-          };
-          addUser(user, user.id)
+        .then(() => {
+          updateProfileUser(
+            data.name,
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
+          )
             .then(() => {
               window.location.hash = '#timeline';
-            })
-            .catch((error) => {
-              console.log(error);
             });
         })
         .catch((error) => {
@@ -94,21 +83,10 @@ export const eventsRegistro = () => {
   $('#registerGoogle').addEventListener('click', (e) => {
     e.preventDefault();
     loginGoogle()
-      .then((res) => {
-        const user = {
-          id: res.user.uid,
-          name: mayuscula(res.user.displayName),
-          email: mayuscula(res.user.email),
-          country: '',
-          photo: res.user.photoURL,
-        };
-        addUser(user, user.id)
-          .then(() => {
-            window.location.hash = '#timeline';
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+      .then(() => {
+        setTimeout(() => {
+          window.location.hash = '#timeline';
+        }, 1000);
       })
       .catch((error) => {
         console.log(error);

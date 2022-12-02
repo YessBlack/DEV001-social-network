@@ -1,5 +1,4 @@
 import { signOutUser, authState } from '../lib/auth.js';
-import { capitalize } from '../lib/index.js';
 import { modalPost } from './ModalPost.js';
 
 export const timeline = () => {
@@ -21,7 +20,7 @@ export const timeline = () => {
   </section>
   <nav class="menu-nav">
       <i class="fa-solid fa-house"></i>
-      <!--<p id="nombre"></p>--> 
+      <p id="nombre"></p>
       <img id="foto-perfil" src="">
       <i class="fa-solid fa-right-from-bracket" id="cerrar-sesion"></i>
     </nav> 
@@ -34,15 +33,15 @@ export const eventsTimeLine = () => {
   const $ = (selector) => document.querySelector(selector);
 
   authState((user) => {
-    setTimeout(() => {
-      if (user != null) {
-        console.log('hola');
-        $('#foto-perfil-post').src = user.photoURL;
-        $('#foto-perfil').src = user.photoURL;
-      } else {
-        console.log('chauuu');
-      }
-    }, 1000);
+    console.log(user);
+    if (user !== null) {
+      const fotoUsuario = user.photoURL;
+      console.log(fotoUsuario);
+      const nombreUsuario = user.displayName;
+      $('#foto-perfil-post').src = fotoUsuario;
+      $('#foto-perfil').src = fotoUsuario;
+      $('#nombre').innerHTML = nombreUsuario;
+    }
   });
 
   $('#btn-post').addEventListener('click', () => {
@@ -58,6 +57,7 @@ export const eventsTimeLine = () => {
     const promise = signOutUser();
     promise.then(() => {
       window.location.hash = '#login';
+      window.location.reload();
     });
     promise.catch(console.error());
   });
