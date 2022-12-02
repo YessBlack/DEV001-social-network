@@ -93,8 +93,7 @@ export const eventsRegistro = () => {
   /* Iniciar sesión con google */
   $('#registerGoogle').addEventListener('click', (e) => {
     e.preventDefault();
-    const promise = loginGoogle();
-    promise
+    loginGoogle()
       .then((res) => {
         const user = {
           id: res.user.uid,
