@@ -217,6 +217,7 @@ button {
 .timeline__container{
     padding: 1.5rem;
     width: 100%;
+    min-height: 100vh;
     background: linear-gradient(rgba(232, 234, 235, 0.8), rgba(232, 234, 235, 0.8)),
     url('../assets/img/background_alt.webp');
     background-size: cover;  
@@ -253,7 +254,7 @@ button {
     display:flex;
     align-items:center;
     justify-content: space-between;
-    position: fixed;
+    position: sticky;
     bottom: 0;
     width: 100%;
     background-color: white;

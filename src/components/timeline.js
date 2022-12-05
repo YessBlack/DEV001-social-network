@@ -1,5 +1,5 @@
 import { signOutUser, authState } from '../lib/auth.js';
-import { getPost, realTime } from '../lib/crud.js';
+import { onGetPost } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
 import { Post } from './Post.js';
 
@@ -35,16 +35,19 @@ export const timeline = () => {
 export const eventsTimeLine = () => {
   const $ = (selector) => document.querySelector(selector);
 
-  realTime(() => {
-    const showPost = async () => {
-      const querySnapshot = await getPost();
-      console.log(querySnapshot);
-      querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-        $('.posts').insertAdjacentHTML('beforeend', Post(doc.data()));
-      });
-    };
-    showPost();
+  onGetPost((res) => {
+    let posts = '';
+    const arr = [];
+    res.forEach((doc) => {
+      const post = doc.data();
+      arr.push(post);
+    });
+    arr.sort((a, b) => b.fecha - a.fecha);
+    arr.forEach((post) => {
+      posts += Post(post);
+    });
+    $('.posts').innerHTML = '';
+    $('.posts').insertAdjacentHTML('beforeend', posts);
   });
 
   authState((user) => {

@@ -8,8 +8,9 @@ export const modalPost = () => {
     </div>
     <form class="create-publication" id="formPublication">
       <input type="text" name="producto" class="input-plubication" id="name-product" placeholder="Nombre del producto"></input>
-      <input type="text" name="ubicacion" class="input-plubication" id="country-product" placeholder="lugar/Ubicación"></input>
-      <input type="text" name="puntos" class="input-plubication" id="point-product" placeholder="Puntuacion 0/10"></input>
+      <input type="text" name="pais" class="input-plubication" id="country-product" placeholder="País"></input>
+      <input type="text" name="ubicacion" class="input-plubication" id="here-product" placeholder="Lugar/Ubicación"></input>
+      <input type="text" name="puntos" class="input-plubication" id="point-product" placeholder="Puntuación 0/10"></input>
       <!--
       <div class="modal-input-img">
         <input type="file" class="input-img"><i class="fa-solid fa-image"></i></input>
@@ -31,6 +32,7 @@ export const eventsModalPost = () => {
   $('#formPublication').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
+    data.fecha = Number(new Date());
     addPost(data)
       .then(() => {
         $('.modal').innerHTML = '';
