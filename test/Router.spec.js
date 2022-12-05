@@ -1,76 +1,81 @@
 import { Router, exeEvents } from '../src/components/Router.js';
-import { welcome } from '../src/components/Welcome.js';
-import { registro, eventsRegistro } from '../src/components/Registro.js';
-import { login, eventsLogin } from '../src/components/Login.js';
-import { timeline, eventsTimeLine } from '../src/components/Timeline.js';
-import { resetPassword, eventsResetPassword } from '../src/components/Recuperar.js';
+
+jest.mock('../src/components/Router.js');
+
+const $ = (selector) => document.querySelector(selector);
 
 describe('Router', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '<div id="root"></div>';
+  });
+
   it('Deberia ser una funcion', () => {
     expect(typeof Router).toBe('function');
   });
 
-  it('Deberia retornar un string', () => {
-    expect(typeof Router()).toBe('string');
+  it('Deberia ser llamado', () => {
+    window.location.hash = '#/';
+    Router();
+    expect(Router).toHaveBeenCalled();
   });
 
   it('Deberia retornar welcome si el hash es #/', () => {
     window.location.hash = '#/';
-    expect(Router()).toBe(welcome());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>welcome</h1>');
   });
 
   it('Deberia retornar registro si el hash es #registrar', () => {
     window.location.hash = '#registrar';
-    expect(Router()).toBe(registro());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>registro</h1>');
   });
 
   it('Deberia retornar login si el hash es #login', () => {
     window.location.hash = '#login';
-    expect(Router()).toBe(login());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>login</h1>');
   });
 
   it('Deberia retornar timeline si el hash es #timeline', () => {
     window.location.hash = '#timeline';
-    expect(Router()).toBe(timeline());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>timeline</h1>');
   });
 
   it('Deberia retornar recuperar password si el hash es #recuperar', () => {
     window.location.hash = '#recuperar';
-    expect(Router()).toBe(resetPassword());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>resetPassword</h1>');
   });
 
   it('Deberia retornar welcome si es hash es diferente al registrado', () => {
     window.location.hash = '#hola';
-    expect(Router()).toBe(welcome());
+    $('#root').innerHTML = Router();
+    expect($('#root').innerHTML).toBe('<h1>welcome</h1>');
   });
 });
 
 describe('exeEvents', () => {
+  beforeEach(() => {
+    document.body.innerHTML = '<div id="root"></div>';
+  });
+
   it('Deberia ser una funcion', () => {
     expect(typeof exeEvents).toBe('function');
   });
 
-  it('Deberia retornar eventsRegistro() si se encuentra en #registrar', () => {
-    document.body.innerHTML = registro();
+  it('Deberia ser llamado y ejecutar su comportamiento', () => {
     window.location.hash = '#registrar';
-    expect(exeEvents()).toBe(eventsRegistro());
+    $('#root').innerHTML = Router();
+    exeEvents();
+    expect(exeEvents).toHaveBeenCalled();
+    expect($('#root').innerHTML).toBe('<h1>mock router</h1>');
   });
 
-  it('Deberia retornar eventsLogin() si se encuentra en #login', () => {
-    document.body.innerHTML = login();
-    window.location.hash = '#login';
-    expect(exeEvents()).toBe(eventsLogin());
-  });
-
-  it('Deberia retornar eventsRegistro() si se encuentra en #timeline', () => {
-    document.body.innerHTML = timeline();
-    window.location.hash = '#timeline';
-    expect(exeEvents()).toBe(eventsTimeLine());
-  });
-
-  it('Deberia retornar eventsResetPassword()) si se encuentra en #recuperar', () => {
-    document.body.innerHTML = resetPassword();
-    window.location.hash = '#recuperar';
-    expect(exeEvents()).toBe(eventsResetPassword());
+  it('Deberia retornar "Hola" si la ruta es diferente a la registrada', () => {
+    window.location.hash = '#hola';
+    $('#root').innerHTML = Router();
+    expect(exeEvents()).toBe('Hola');
   });
 });

@@ -1,5 +1,7 @@
 import { signOutUser, authState } from '../lib/auth.js';
-import { modalPost } from './ModalPost.js';
+import { getPost, realTime } from '../lib/crud.js';
+import { modalPost, eventsModalPost } from './ModalPost.js';
+import { Post } from './Post.js';
 
 export const timeline = () => {
   const pageTimeline = `<section class="timeline">
@@ -17,10 +19,11 @@ export const timeline = () => {
       </button>
     </div>
     <div class="modal"></div>
+    <div class="posts"></div>
   </section>
   <nav class="menu-nav">
       <i class="fa-solid fa-house"></i>
-      <p id="nombre"></p>
+      <!--<p id="nombre"></p>-->
       <img id="foto-perfil" src="">
       <i class="fa-solid fa-right-from-bracket" id="cerrar-sesion"></i>
     </nav> 
@@ -32,33 +35,42 @@ export const timeline = () => {
 export const eventsTimeLine = () => {
   const $ = (selector) => document.querySelector(selector);
 
+  realTime(() => {
+    const showPost = async () => {
+      const querySnapshot = await getPost();
+      console.log(querySnapshot);
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+        $('.posts').insertAdjacentHTML('beforeend', Post(doc.data()));
+      });
+    };
+    showPost();
+  });
+
   authState((user) => {
     console.log(user);
     if (user !== null) {
       const fotoUsuario = user.photoURL;
-      console.log(fotoUsuario);
-      const nombreUsuario = user.displayName;
       $('#foto-perfil-post').src = fotoUsuario;
+      $('#foto-perfil-post').referrerpolicy = 'no-referrer';
       $('#foto-perfil').src = fotoUsuario;
-      $('#nombre').innerHTML = nombreUsuario;
+      $('#foto-perfil').referrerpolicy = 'no-referrer';
+      // $('#nombre').innerHTML = nombreUsuario;
     }
   });
 
   $('#btn-post').addEventListener('click', () => {
     $('.modal').innerHTML = modalPost();
-    $('#btn-share').addEventListener('click', (e) => {
-      e.preventDefault();
-      $('#name-product');
-    });
+    eventsModalPost();
   });
 
   $('#cerrar-sesion').addEventListener('click', (e) => {
     e.preventDefault();
-    const promise = signOutUser();
-    promise.then(() => {
-      window.location.hash = '#login';
-      window.location.reload();
-    });
-    promise.catch(console.error());
+    signOutUser()
+      .then(() => {
+        window.location.hash = '#login';
+        window.location.reload();
+      })
+      .catch((error) => console.log(error));
   });
 };

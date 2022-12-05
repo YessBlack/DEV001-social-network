@@ -90,6 +90,7 @@ export const eventsLogin = () => {
   $('#loginGoogle').addEventListener('click', () => {
     const promise = loginGoogle();
     promise.then(() => {
+      //
       window.location.hash = '#timeline';
     });
     promise.catch((error) => {

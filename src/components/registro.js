@@ -1,6 +1,4 @@
 import { createUser, loginGoogle, updateProfileUser } from '../lib/auth.js';
-import { addUser } from '../lib/create.js';
-import { mayuscula } from '../lib/index.js';
 
 export const registro = () => {
   const pageRegistro = `<section class="containerAuth container">   
@@ -84,9 +82,7 @@ export const eventsRegistro = () => {
     e.preventDefault();
     loginGoogle()
       .then(() => {
-        setTimeout(() => {
-          window.location.hash = '#timeline';
-        }, 1000);
+        window.location.hash = '#timeline';
       })
       .catch((error) => {
         console.log(error);
