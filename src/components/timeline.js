@@ -1,4 +1,4 @@
-import { signOutUser, authState, currentUserInfo } from '../lib/auth.js';
+import { signOutUser, authState } from '../lib/auth.js';
 import { onGetPost } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
 import { Post, eventsPost } from './Post.js';
