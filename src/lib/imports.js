@@ -18,6 +18,9 @@ export {
   doc,
   onSnapshot,
   getDocs,
+  deleteDoc,
+  getDoc,
+  updateDoc,
 } from 'firebase/firestore';
 
 export { initializeApp } from 'firebase/app';

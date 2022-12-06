@@ -1,7 +1,7 @@
-import { signOutUser, authState } from '../lib/auth.js';
+import { signOutUser, authState, currentUserInfo } from '../lib/auth.js';
 import { onGetPost } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
-import { Post } from './Post.js';
+import { Post, eventsPost } from './Post.js';
 
 export const timeline = () => {
   const pageTimeline = `<section class="timeline">
@@ -39,19 +39,23 @@ export const eventsTimeLine = () => {
     let posts = '';
     const arr = [];
     res.forEach((doc) => {
+      const idUserDB = doc.data().idUser;
       const post = doc.data();
+      const id = doc.id;
+      post.id = id;
+      post.idUserDB = idUserDB;
       arr.push(post);
     });
     arr.sort((a, b) => b.fecha - a.fecha);
     arr.forEach((post) => {
-      posts += Post(post);
+      posts += Post(post, post.id, post.idUserDB);
     });
     $('.posts').innerHTML = '';
     $('.posts').insertAdjacentHTML('beforeend', posts);
+    eventsPost();
   });
 
   authState((user) => {
-    console.log(user);
     if (user !== null) {
       const fotoUsuario = user.photoURL;
       $('#foto-perfil-post').src = fotoUsuario;

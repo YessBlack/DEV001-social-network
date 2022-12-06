@@ -33,3 +33,5 @@ export const userState = () => auth.currentUser;
 export const updateProfileUser = (name, img) => updateProfile(auth.currentUser, {
   displayName: name, photoURL: img,
 });
+
+export const currentUserInfo = () => auth.currentUser;
