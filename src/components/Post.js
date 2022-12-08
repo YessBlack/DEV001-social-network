@@ -4,6 +4,7 @@ import { modalPost, eventsEditarPost } from './ModalPost.js';
 
 export const Post = (post, id, idUserDB) => {
   const page = `<section class="container__post">
+    <div class="prueba-img"></div>
     <p>${post.producto}</p>
     <p>${post.pais}</p>
     <p>${post.ubicacion}</p>

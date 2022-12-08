@@ -7,8 +7,12 @@ import {
   getDoc,
   doc,
   updateDoc,
+  ref,
+  uploadBytes,
+  getDownloadURL,
 } from './imports.js';
-import { db } from './config.js';
+
+import { db, storage } from './config.js';
 
 export const realTime = (cb) => onSnapshot(collection(db, 'posts'), cb);
 
@@ -24,4 +28,8 @@ export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
 
-// export const addPost = (id, data) => setDoc(doc(db, 'posts', id), data);
+export const refImg = (pathImg) => ref(storage, `/fotos_posts/${pathImg}`);
+
+export const uploadImgPost = (path, file) => uploadBytes(path, file);
+
+export const getDownloadIMG = (refe, pathImg) => getDownloadURL(refe, pathImg);

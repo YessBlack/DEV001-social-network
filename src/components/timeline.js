@@ -1,5 +1,5 @@
 import { signOutUser, authState } from '../lib/auth.js';
-import { onGetPost } from '../lib/crud.js';
+import { onGetPost, refImg, getDownloadIMG } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
 import { Post, eventsPost } from './Post.js';
 
@@ -34,7 +34,6 @@ export const timeline = () => {
 
 export const eventsTimeLine = () => {
   const $ = (selector) => document.querySelector(selector);
-
   onGetPost((res) => {
     let posts = '';
     const arr = [];

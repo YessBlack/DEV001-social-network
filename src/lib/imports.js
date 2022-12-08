@@ -24,3 +24,10 @@ export {
 } from 'firebase/firestore';
 
 export { initializeApp } from 'firebase/app';
+
+export {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+} from 'firebase/storage';
