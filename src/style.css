@@ -231,6 +231,7 @@ button {
     border-radius: 20px;
     margin:auto;
     justify-content:space-between;
+    max-width: 700px;
 }
 .create-post img {
     width: 50px;
@@ -349,11 +350,13 @@ button {
     margin: 1rem auto;
 }
  .container__post {
+    margin: 1rem auto;
     background-color: white;
     border: 1px solid var(--colorPrimary);
     padding: 1rem;
-    margin-top: 1rem;
+    max-width: 600px;
     border-radius: 20px;
+    box-shadow: rgba(255, 175, 27, 0.24) 0px 3px 8px;
  }
  .header__post {
     display: flex;
@@ -367,8 +370,8 @@ button {
  .img__post {
     margin-top: 1rem;
     width: 100%;
-    height: 180px;
-    object-fit: cover;
+    height: 250px;
+    object-fit: contain;
  }
 /* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {

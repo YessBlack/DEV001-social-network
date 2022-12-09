@@ -1,13 +1,13 @@
 import { currentUserInfo } from '../lib/auth.js';
-import { deletePost, getDownloadIMG } from '../lib/crud.js';
-import { capitalizeWordCut } from '../lib/index.js';
+import { deletePost } from '../lib/crud.js';
+import { capitalize } from '../lib/index.js';
 import { modalPost, eventsEditarPost } from './ModalPost.js';
 
 export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
   const page = `<section class="container__post">
     <div class="header__post">
       <img id="foto-perfil" src="${imgProfile}">
-      <p>${capitalizeWordCut(name, 2)}</p>
+      <p>${name}</p>
     </div>
 
     <div class="prueba-img">

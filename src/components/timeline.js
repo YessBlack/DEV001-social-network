@@ -48,6 +48,7 @@ export const eventsTimeLine = () => {
     });
     arr.sort((a, b) => b.fecha - a.fecha);
     arr.forEach((post) => {
+      console.log(post);
       posts += Post(post, post.id, post.idUserDB, post.imgProfile, post.nameUser, post.imgPostUrl);
     });
     $('.posts').innerHTML = '';
