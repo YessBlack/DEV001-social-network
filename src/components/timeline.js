@@ -1,5 +1,5 @@
 import { signOutUser, authState } from '../lib/auth.js';
-import { onGetPost, refImg, getDownloadIMG } from '../lib/crud.js';
+import { onGetPost } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
 import { Post, eventsPost } from './Post.js';
 
@@ -38,16 +38,17 @@ export const eventsTimeLine = () => {
     let posts = '';
     const arr = [];
     res.forEach((doc) => {
-      const idUserDB = doc.data().idUser;
       const post = doc.data();
-      const id = doc.id;
-      post.id = id;
-      post.idUserDB = idUserDB;
+      post.id = doc.id;
+      post.idUserDB = doc.data().idUser;
+      post.imgProfile = doc.data().photoProfileUser;
+      post.nameUser = doc.data().nameUser;
+      post.imgPostUrl = doc.data().imgPostUrl;
       arr.push(post);
     });
     arr.sort((a, b) => b.fecha - a.fecha);
     arr.forEach((post) => {
-      posts += Post(post, post.id, post.idUserDB);
+      posts += Post(post, post.id, post.idUserDB, post.imgProfile, post.nameUser, post.imgPostUrl);
     });
     $('.posts').innerHTML = '';
     $('.posts').insertAdjacentHTML('beforeend', posts);

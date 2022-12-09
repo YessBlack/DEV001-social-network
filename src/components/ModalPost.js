@@ -1,7 +1,6 @@
-import { doc } from 'firebase/firestore';
 import { currentUserInfo } from '../lib/auth.js';
 import {
-  addPost, getPost, updatePost, uploadImgPost, refImg, getDownloadIMG,
+  addPost, getPost, updatePost, uploadTask, storageRef, getDownloadIMG,
 } from '../lib/crud.js';
 
 export const modalPost = () => {
@@ -11,10 +10,10 @@ export const modalPost = () => {
       <i class="fa-solid fa-circle-xmark" id="btn-cerrar-modal"></i>
     </div>
     <form class="create-publication" id="formPublication">
-      <input type="text" name="producto" class="input-plubication" id="name-product" placeholder="Nombre del producto"></input>
-      <input type="text" name="pais" class="input-plubication" id="country-product" placeholder="País"></input>
-      <input type="text" name="ubicacion" class="input-plubication" id="here-product" placeholder="Lugar/Ubicación"></input>
-      <input type="text" name="puntos" class="input-plubication" id="point-product" placeholder="Puntuación 0/10"></input>
+      <input type="text" required name="producto" class="input-plubication" id="name-product" placeholder="Nombre del producto"></input>
+      <input type="text" required name="pais" class="input-plubication" id="country-product" placeholder="País"></input>
+      <input type="text" required name="ubicacion" class="input-plubication" id="here-product" placeholder="Lugar/Ubicación"></input>
+      <input type="text" required name="puntos" class="input-plubication" id="point-product" placeholder="Puntuación 0/10"></input>
       <div class="modal-input-img">
         <input type="file" accept="image/png, .jpeg, .jpg, image/gif" id="input-file-photo"></input>
       </div>
@@ -31,25 +30,24 @@ export const eventsModalPost = () => {
   });
 
   $('#input-file-photo').addEventListener('change', () => {
-    const pathImg = $('#input-file-photo').files[0].name;
-    console.log(pathImg);
-    const blobURL = URL.createObjectURL($('#input-file-photo')[0].files[0]);
-
+    const path = $('#input-file-photo').files[0];
     $('#formPublication').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
       data.fecha = Number(new Date());
       data.idUser = currentUserInfo().uid;
-      uploadImgPost(refImg(pathImg), blobURL)
+      data.photoProfileUser = currentUserInfo().photoURL;
+      data.nameUser = currentUserInfo().displayName;
+      uploadTask(storageRef(path), path)
         .then((res) => {
-          getDownloadIMG(refImg(pathImg), res.fullPathName)
+          getDownloadIMG(res.ref.fullPath)
             .then((url) => {
-              console.log(url);
+              data.imgPostUrl = url;
+              addPost(data)
+                .then(() => {
+                  $('.modal').innerHTML = '';
+                });
             });
-        });
-      addPost(data)
-        .then(() => {
-          $('.modal').innerHTML = '';
         });
     });
   });

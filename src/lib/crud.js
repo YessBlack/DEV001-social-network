@@ -14,6 +14,8 @@ import {
 
 import { db, storage } from './config.js';
 
+const metadata = { cotentType: 'image/jpg' };
+
 export const realTime = (cb) => onSnapshot(collection(db, 'posts'), cb);
 
 export const addPost = (post) => addDoc(collection(db, 'posts'), post);
@@ -28,8 +30,8 @@ export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
 
-export const refImg = (pathImg) => ref(storage, `/fotos_posts/${pathImg}`);
+export const storageRef = (path) => ref(storage, `images/${path.name}`);
 
-export const uploadImgPost = (path, file) => uploadBytes(path, file);
+export const uploadTask = (storageReference, file) => uploadBytes(storageReference, file, metadata);
 
-export const getDownloadIMG = (refe, pathImg) => getDownloadURL(refe, pathImg);
+export const getDownloadIMG = (path) => getDownloadURL(ref(storage, path));
