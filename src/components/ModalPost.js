@@ -31,18 +31,19 @@ export const eventsModalPost = () => {
 
   $('#input-file-photo').addEventListener('change', () => {
     const path = $('#input-file-photo').files[0];
+    console.log(path);
     $('#formPublication').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
       data.fecha = Number(new Date());
       data.idUser = currentUserInfo().uid;
-      data.photoProfileUser = currentUserInfo().photoURL;
+      data.photoUser = currentUserInfo().photoURL;
       data.nameUser = currentUserInfo().displayName;
       uploadTask(storageRef(path), path)
         .then((res) => {
           getDownloadIMG(res.ref.fullPath)
             .then((url) => {
-              data.imgPostUrl = url;
+              data.urlPhotoPost = url;
               addPost(data)
                 .then(() => {
                   $('.modal').innerHTML = '';

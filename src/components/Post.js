@@ -1,6 +1,5 @@
 import { currentUserInfo } from '../lib/auth.js';
 import { deletePost } from '../lib/crud.js';
-import { capitalize } from '../lib/index.js';
 import { modalPost, eventsEditarPost } from './ModalPost.js';
 
 export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
@@ -13,23 +12,62 @@ export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
     <div class="prueba-img">
       <img src="${imgPost}" class="img__post">
     </div>
-    <p>${post.producto}</p>
-    <p>${post.pais}</p>
-    <p>${post.ubicacion}</p>
-    <p>${post.puntos} /10</p>
+
+    <div class="review">
+      <div class="informacion">
+        <p class="producto">${post.producto}</p>
+        <p>${post.pais}</p>
+        <p>${post.ubicacion}</p>
+      </div>
+      <div class="stars">
+        <p>${post.puntos} /10</p>
+        <i class="fa-regular fa-star"></i>
+    </div>
+
+    </div>
     <div class="modal"></div>
-    <i class="fa-regular fa-heart"></i>
-    ${
+    <div class="botones">
+      <div class="btn-like">
+        <i class="fa-regular fa-heart"></i>
+        <div class="counter_like"></div>
+      </div>
+      <div class="editar-borrar">
+      ${
   idUserDB === currentUserInfo().uid
-    ? `<i class="fa-solid fa-trash-can ${idUserDB}" id="${id}"></i><i class="fa-regular fa-pen-to-square ${idUserDB}" id="${id}"></i>`
+    ? `<i class="fa-regular fa-pen-to-square ${idUserDB}" id="${id}"></i><i class="fa-solid fa-trash-can ${idUserDB}" id="${id}"></i>`
     : ''
 }
+      </div>
+    </div>
   </section>`;
   return page;
 };
 
 export const eventsPost = () => {
   const $ = (selector) => document.querySelector(selector);
+
+  const btnsLike = document.querySelectorAll('.fa-heart');
+  btnsLike.forEach((btn) => {
+    let counterLikes = 0;
+    btn.addEventListener('click', () => {
+      if (btn.style.color === '') {
+        btn.style.color = 'red';
+        btn.style.fontWeight = 'bolder';
+        counterLikes += 1;
+        btn.nextElementSibling.innerHTML = counterLikes;
+      } else if (btn.style.color === 'red') {
+        btn.style.color = '';
+        btn.style.fontWeight = 'lighter';
+        counterLikes -= 1;
+        btn.nextElementSibling.innerHTML = counterLikes;
+      }
+      if (counterLikes === 0) {
+        btn.nextElementSibling.innerHTML = '';
+      } else {
+        btn.nextElementSibling.innerHTML = `${counterLikes}`;
+      }
+    });
+  });
 
   const btnsEliminar = document.querySelectorAll('.fa-trash-can');
   btnsEliminar.forEach((btn) => {

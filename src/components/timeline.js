@@ -41,15 +41,15 @@ export const eventsTimeLine = () => {
       const post = doc.data();
       post.id = doc.id;
       post.idUserDB = doc.data().idUser;
-      post.imgProfile = doc.data().photoProfileUser;
+      post.photoUser = doc.data().photoUser;
       post.nameUser = doc.data().nameUser;
-      post.imgPostUrl = doc.data().imgPostUrl;
+      post.photoPost = doc.data().urlPhotoPost;
       arr.push(post);
     });
     arr.sort((a, b) => b.fecha - a.fecha);
     arr.forEach((post) => {
       console.log(post);
-      posts += Post(post, post.id, post.idUserDB, post.imgProfile, post.nameUser, post.imgPostUrl);
+      posts += Post(post, post.id, post.idUserDB, post.photoUser, post.nameUser, post.photoPost);
     });
     $('.posts').innerHTML = '';
     $('.posts').insertAdjacentHTML('beforeend', posts);
