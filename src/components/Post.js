@@ -1,5 +1,5 @@
 import { currentUserInfo } from '../lib/auth.js';
-import { deletePost } from '../lib/crud.js';
+import { deletePost, getPost, updatePost } from '../lib/crud.js';
 import { modalPost, eventsEditarPost } from './ModalPost.js';
 
 export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
@@ -28,7 +28,7 @@ export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
     <div class="modal"></div>
     <div class="botones">
       <div class="btn-like">
-        <i class="fa-regular fa-heart"></i>
+        <i class="fa-regular fa-heart" id="${id}"></i>
         <div class="counter_like"></div>
       </div>
       <div class="editar-borrar">
@@ -48,24 +48,22 @@ export const eventsPost = () => {
 
   const btnsLike = document.querySelectorAll('.fa-heart');
   btnsLike.forEach((btn) => {
-    let counterLikes = 0;
-    btn.addEventListener('click', () => {
-      if (btn.style.color === '') {
-        btn.style.color = 'red';
-        btn.style.fontWeight = 'bolder';
-        counterLikes += 1;
-        btn.nextElementSibling.innerHTML = counterLikes;
-      } else if (btn.style.color === 'red') {
-        btn.style.color = '';
-        btn.style.fontWeight = 'lighter';
-        counterLikes -= 1;
-        btn.nextElementSibling.innerHTML = counterLikes;
-      }
-      if (counterLikes === 0) {
-        btn.nextElementSibling.innerHTML = '';
-      } else {
-        btn.nextElementSibling.innerHTML = `${counterLikes}`;
-      }
+    btn.addEventListener('click', (e) => {
+      const id = e.target.id;
+      getPost(id)
+        .then((res) => {
+          let likes = res.data().likes;
+          console.log(likes);
+          likes.forEach((like) => {
+            if (like !== currentUserInfo().email) {
+              likes.push(currentUserInfo().email);
+            } else {
+              likes = likes.filter((email) => email !== currentUserInfo().email);
+            }
+          });
+          updatePost(id, { likes });
+          console.log(likes);
+        });
     });
   });
 
@@ -86,3 +84,26 @@ export const eventsPost = () => {
     });
   });
 };
+
+/**
+ *     let counterLikes = 0;
+
+      if (btn.style.color === '') {
+        btn.style.color = 'red';
+        btn.style.fontWeight = 'bolder';
+        counterLikes += 1;
+        btn.nextElementSibling.innerHTML = counterLikes;
+      } else if (btn.style.color === 'red') {
+        btn.style.color = '';
+        btn.style.fontWeight = 'lighter';
+        counterLikes -= 1;
+        btn.nextElementSibling.innerHTML = counterLikes;
+      }
+      if (counterLikes === 0) {
+        btn.nextElementSibling.innerHTML = '';
+      } else {
+        btn.nextElementSibling.innerHTML = `${counterLikes}`;
+      }
+    });
+
+ */

@@ -31,7 +31,6 @@ export const eventsModalPost = () => {
 
   $('#input-file-photo').addEventListener('change', () => {
     const path = $('#input-file-photo').files[0];
-    console.log(path);
     $('#formPublication').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
@@ -39,6 +38,8 @@ export const eventsModalPost = () => {
       data.idUser = currentUserInfo().uid;
       data.photoUser = currentUserInfo().photoURL;
       data.nameUser = currentUserInfo().displayName;
+      data.likes = [];
+      // data.likes = ['carloscorreo','nataliacorreo','angelicacorreo'];
       uploadTask(storageRef(path), path)
         .then((res) => {
           getDownloadIMG(res.ref.fullPath)
