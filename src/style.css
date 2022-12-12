@@ -432,6 +432,10 @@ button {
     }
 }
 
+.true {
+    color: red;
+    font-weight: bold;
+}
 
 
 /* ------------------- Media Querys -----------------*/

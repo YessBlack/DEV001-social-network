@@ -6,7 +6,7 @@ export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
   const page = `<section class="container__post">
     <div class="header__post">
       <img id="foto-perfil" src="${imgProfile}">
-      <p>${name}</p>
+      <p>${post.nameUser}</p>
     </div>
 
     <div class="prueba-img">
@@ -28,7 +28,10 @@ export const Post = (post, id, idUserDB, imgProfile, name, imgPost) => {
     <div class="modal"></div>
     <div class="botones">
       <div class="btn-like">
-        <i class="fa-regular fa-heart" id="${id}"></i>
+        <i class="fa-regular fa-heart ${post.likes.includes(currentUserInfo().email) ? 'true' : 'false'}" id="${id}">
+        </i>
+      <div class="counter_like">${post.likes.length}</div>
+
         <div class="counter_like"></div>
       </div>
       <div class="editar-borrar">
@@ -53,16 +56,14 @@ export const eventsPost = () => {
       getPost(id)
         .then((res) => {
           let likes = res.data().likes;
-          console.log(likes);
-          likes.forEach((like) => {
-            if (like !== currentUserInfo().email) {
-              likes.push(currentUserInfo().email);
-            } else {
-              likes = likes.filter((email) => email !== currentUserInfo().email);
-            }
-          });
+          if (likes.length === 0) {
+            likes.push(currentUserInfo().email);
+          } else if (!likes.includes(currentUserInfo().email)) {
+            likes.push(currentUserInfo().email);
+          } else {
+            likes = likes.filter((email) => !email.includes(currentUserInfo().email));
+          }
           updatePost(id, { likes });
-          console.log(likes);
         });
     });
   });

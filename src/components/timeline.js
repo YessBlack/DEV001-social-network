@@ -1,4 +1,4 @@
-import { signOutUser, authState } from '../lib/auth.js';
+import { signOutUser, authState, currentUserInfo } from '../lib/auth.js';
 import { onGetPost } from '../lib/crud.js';
 import { modalPost, eventsModalPost } from './ModalPost.js';
 import { Post, eventsPost } from './Post.js';
@@ -44,11 +44,22 @@ export const eventsTimeLine = () => {
       post.photoUser = doc.data().photoUser;
       post.nameUser = doc.data().nameUser;
       post.photoPost = doc.data().urlPhotoPost;
+      post.likes = doc.data().likes;
+      post.like = post.likes.forEach((email) => (currentUserInfo().email === email));
       arr.push(post);
     });
     arr.sort((a, b) => b.fecha - a.fecha);
     arr.forEach((post) => {
-      posts += Post(post, post.id, post.idUserDB, post.photoUser, post.nameUser, post.photoPost);
+      posts += Post(
+        post,
+        post.id,
+        post.idUserDB,
+        post.photoUser,
+        post.nameUser,
+        post.photoPost,
+        post.likes,
+        post.like,
+      );
     });
     $('.posts').innerHTML = '';
     $('.posts').insertAdjacentHTML('beforeend', posts);
