@@ -30,7 +30,7 @@ export const getPost = (id) => getDoc(doc(db, 'posts', id));
 
 export const updatePost = (id, newFields) => updateDoc(doc(db, 'posts', id), newFields);
 
-export const storageRef = (path) => ref(storage, `images/${path.name}`);
+export const storageRef = (path, root) => ref(storage, `${root}/${path.name}`);
 
 export const uploadTask = (storageReference, file) => uploadBytes(storageReference, file, metadata);
 

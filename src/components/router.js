@@ -3,6 +3,7 @@ import { login, eventsLogin } from './Login.js';
 import { registro, eventsRegistro } from './Registro.js';
 import { eventsTimeLine, timeline } from './Timeline.js';
 import { eventsResetPassword, resetPassword } from './Recuperar.js';
+import { Perfil, eventsPerfil } from './Perfil.js';
 
 export const Router = () => {
   // eslint-disable-next-line no-restricted-globals
@@ -22,6 +23,10 @@ export const Router = () => {
   if (hash === '#recuperar') {
     return resetPassword();
   }
+  if (hash === '#perfil') {
+    return Perfil();
+  }
+
   return welcome();
 };
 
@@ -40,5 +45,9 @@ export const exeEvents = () => {
   if (hash === '#recuperar') {
     return eventsResetPassword();
   }
+  if (hash === '#perfil') {
+    return eventsPerfil();
+  }
+
   return welcome();
 };

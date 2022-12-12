@@ -40,7 +40,7 @@ export const eventsModalPost = () => {
       data.nameUser = currentUserInfo().displayName;
       data.likes = [];
       // data.likes = ['carloscorreo','nataliacorreo','angelicacorreo'];
-      uploadTask(storageRef(path), path)
+      uploadTask(storageRef(path, 'images'), path)
         .then((res) => {
           getDownloadIMG(res.ref.fullPath)
             .then((url) => {

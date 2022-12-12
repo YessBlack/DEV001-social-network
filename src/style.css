@@ -235,8 +235,10 @@ button {
 }
 .create-post img {
     width: 50px;
+    height: 50px;
     margin-left: .5rem;
     border-radius: 50px;
+    object-fit: cover;
 }
 .btn-create-post{
     padding:10px;
@@ -265,6 +267,8 @@ button {
  }
  .menu-nav img {
     width: 40px;
+    height: 40px;
+    object-fit: cover;
     margin-left: .5rem;
     border-radius: 50px;
     margin-right: .5rem;
@@ -364,6 +368,7 @@ button {
  }
  .header__post  img {
     width: 40px;
+    height: 40px;
     border-radius: 50px;
     margin-right: 1rem;
  }
@@ -419,6 +424,15 @@ button {
 }
 .btn-like div {
     margin-left: .5rem;
+}
+.photo-user-profile {
+    margin: 1rem auto;
+    display: block;
+    border-radius: 50%;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+
 }
 /* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {
