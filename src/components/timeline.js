@@ -86,6 +86,10 @@ export const eventsTimeLine = () => {
     window.location.hash = '#perfil';
   });
 
+  $('.fa-house').addEventListener('click', () => {
+    window.scrollTo(0, 0);
+  });
+
   $('#cerrar-sesion').addEventListener('click', (e) => {
     e.preventDefault();
     signOutUser()

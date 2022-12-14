@@ -272,13 +272,28 @@ button {
     margin-left: .5rem;
     border-radius: 50px;
     margin-right: .5rem;
+    cursor: pointer;
 }
 /* -------------------------------- Modal------------------------- */
+.menu-nav img:hover {
+    transition: 0.5s;
+    transform: scale(1.3);
+    }
+    .fa-right-from-bracket{
+     cursor:pointer;
+    }
+    .fa-house {
+        cursor:pointer;
+    }
+    
 .modal {
     display: flex;
     justify-content: center;
 }
  .modal-container{
+    margin: auto;
+    left: 0;
+    right: 0;
     position: fixed;
     top: 70px;
     max-width: 500px;
@@ -432,7 +447,10 @@ button {
     width: 130px;
     height: 130px;
     object-fit: cover;
-
+}
+.name-user {
+    text-align: center;
+    color: var(--colorPrimary);
 }
 /* -------------------------------- Media Querys------------------------- */
 @media (min-width:430px) {

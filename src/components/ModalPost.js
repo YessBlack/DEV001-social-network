@@ -69,9 +69,17 @@ export const eventsEditarPost = (id) => {
   $('#formPublication').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    updatePost(id, data)
-      .then(() => {
-        $('.modal').innerHTML = '';
+    const path = $('#input-file-photo').files[0];
+    uploadTask(storageRef(path, 'images'), path)
+      .then((res) => {
+        getDownloadIMG(res.ref.fullPath)
+          .then((url) => {
+            data.urlPhotoPost = url;
+            updatePost(id, data)
+              .then(() => {
+                $('.modal').innerHTML = '';
+              });
+          });
       });
   });
 
@@ -79,8 +87,3 @@ export const eventsEditarPost = (id) => {
     $('.modal').innerHTML = '';
   });
 };
-
-/**
- *
- * console.log(getDownloadIMG(refImg(pathImg), 'codigo.png'));
- */

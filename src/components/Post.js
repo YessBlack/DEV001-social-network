@@ -72,7 +72,11 @@ export const eventsPost = () => {
   btnsEliminar.forEach((btn) => {
     btn.addEventListener('click', (e) => {
       const id = e.target.id;
-      deletePost(id);
+
+      // eslint-disable-next-line no-restricted-globals
+      if (confirm('¿Estás seguro que deseas eliminar tu post?') === true) {
+        deletePost(id);
+      }
     });
   });
 
@@ -85,26 +89,3 @@ export const eventsPost = () => {
     });
   });
 };
-
-/**
- *     let counterLikes = 0;
-
-      if (btn.style.color === '') {
-        btn.style.color = 'red';
-        btn.style.fontWeight = 'bolder';
-        counterLikes += 1;
-        btn.nextElementSibling.innerHTML = counterLikes;
-      } else if (btn.style.color === 'red') {
-        btn.style.color = '';
-        btn.style.fontWeight = 'lighter';
-        counterLikes -= 1;
-        btn.nextElementSibling.innerHTML = counterLikes;
-      }
-      if (counterLikes === 0) {
-        btn.nextElementSibling.innerHTML = '';
-      } else {
-        btn.nextElementSibling.innerHTML = `${counterLikes}`;
-      }
-    });
-
- */

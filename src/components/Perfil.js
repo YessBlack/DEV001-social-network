@@ -1,4 +1,4 @@
-import { authState, updateProfileUser } from '../lib/auth.js';
+import { authState, updateProfileUser, currentUserInfo } from '../lib/auth.js';
 import { uploadTask, getDownloadIMG, storageRef } from '../lib/crud.js';
 
 export const Perfil = () => {
@@ -15,6 +15,7 @@ export const Perfil = () => {
     <i class="fa-solid fa-circle-xmark" id="btn-cerrar-profile"></i>
   </div>
   <img src="" class="photo-user-profile">
+  <p class="name-user"></p>
   <form class="create-publication" id="formPublication">
     <input type="text" required name="producto" class="input-name-user input-plubication" id="name-product" placeholder="Nombre del usuario"></input>
     <div class="modal-input-img">
@@ -43,6 +44,8 @@ export const eventsPerfil = () => {
     if (user !== null) {
       $('.photo-user-profile').src = user.photoURL;
       $('.input-name-user').value = user.displayName;
+      $('#foto-perfil').src = user.photoURL;
+      $('.name-user').textContent = user.displayName;
     }
   });
 
@@ -53,14 +56,20 @@ export const eventsPerfil = () => {
   $('.update-profile').addEventListener('click', (e) => {
     e.preventDefault();
     const name = $('.input-name-user').value;
-    const path = $('#input-file-photo').files[0];
+    updateProfileUser(name, currentUserInfo().photoURL);
+    $('.name-user').textContent = name;
+  });
 
+  $('#input-file-photo').addEventListener('change', () => {
+    const name = $('.input-name-user').value;
+    const path = $('#input-file-photo').files[0];
     uploadTask(storageRef(path, 'profiles'), path)
       .then((res) => {
         getDownloadIMG(res.ref.fullPath)
           .then((url) => {
             $('.photo-user-profile').src = url;
             updateProfileUser(name, url);
+            $('.name-user').textContent = name;
           });
       });
   });
