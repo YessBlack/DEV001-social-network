@@ -500,10 +500,10 @@ button {
         justify-content: space-evenly;
     }
     .container__content{
-        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(/assets/background_principal.4288016c.jpg); 
     }
     .container__content, .containerAuth__content {
-        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(assets/img/background_principal.jpg); 
+        background: linear-gradient(rgba(246, 241, 241, 0.87), rgba(246, 241, 241, 0.87)), url(/assets/background_principal.4288016c.jpg); 
         margin: 0;
     }
     .ojo {

@@ -66,20 +66,30 @@ export const eventsEditarPost = (id) => {
       $('#point-product').value = res.data().puntos;
     });
 
+  $('#input-file-photo').addEventListener('change', () => {
+    $('#formPublication').addEventListener('submit', (e) => {
+      const data = Object.fromEntries(new FormData(e.target));
+      const path = $('#input-file-photo').files[0];
+      uploadTask(storageRef(path, 'images'), path)
+        .then((res) => {
+          getDownloadIMG(res.ref.fullPath)
+            .then((url) => {
+              data.urlPhotoPost = url;
+              updatePost(id, data)
+                .then(() => {
+                  $('.modal').innerHTML = '';
+                });
+            });
+        });
+    });
+  });
+
   $('#formPublication').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));
-    const path = $('#input-file-photo').files[0];
-    uploadTask(storageRef(path, 'images'), path)
-      .then((res) => {
-        getDownloadIMG(res.ref.fullPath)
-          .then((url) => {
-            data.urlPhotoPost = url;
-            updatePost(id, data)
-              .then(() => {
-                $('.modal').innerHTML = '';
-              });
-          });
+    updatePost(id, data)
+      .then(() => {
+        $('.modal').innerHTML = '';
       });
   });
 

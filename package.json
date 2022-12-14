@@ -21,7 +21,7 @@
     "testNico": "jest --watch --env=jsdom",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "./deploy.sh"
+    "deploy": "deploy.sh"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",

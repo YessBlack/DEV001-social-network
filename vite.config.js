@@ -15,6 +15,7 @@ export default defineConfig(({ command }) => {
           output: {
             dir: './dist',
           },
+          assetsDir: './assets/img',
         },
         // sourcemap: true,
       },
