@@ -20,7 +20,7 @@ export const registro = () => {
           <h3 class="lines-effect">OR</h3>          
         </form>
         <button id="registerGoogle" class="containerAuth__button-google">
-          <img src="assets/img/google.png" alt="logo de google">
+          <img src="https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fgoogle.png?alt=media&token=3d00ba48-04a1-4489-af9d-3d0ca796d21e">
           Registrarse con Google
         </button>
       </div>    

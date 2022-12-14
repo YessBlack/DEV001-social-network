@@ -18,7 +18,7 @@ export const login = () => {
           <h3 class="lines-effect">OR</h3>          
         </form>
         <button id="loginGoogle" class="containerAuth__button-google">
-          <img src="assets/img/google.png" alt="logo de google">
+          <img src="https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fgoogle.png?alt=media&token=3d00ba48-04a1-4489-af9d-3d0ca796d21e" alt="logo de google">
           Login con Google
         </button>
         <a href="#recuperar" class="containerAuth__register-link" id="prueba">¿Olvidaste tu contraseña?</a>
