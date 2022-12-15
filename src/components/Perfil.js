@@ -1,4 +1,4 @@
-import { authState, updateProfileUser, currentUserInfo } from '../lib/auth.js';
+import { authState, updateProfileUser } from '../lib/auth.js';
 import { uploadTask, getDownloadIMG, storageRef } from '../lib/crud.js';
 
 export const Perfil = () => {
@@ -56,7 +56,7 @@ export const eventsPerfil = () => {
   $('.update-profile').addEventListener('click', (e) => {
     e.preventDefault();
     const name = $('.input-name-user').value;
-    updateProfileUser(name, currentUserInfo().photoURL);
+    updateProfileUser(name);
     $('.name-user').textContent = name;
   });
 

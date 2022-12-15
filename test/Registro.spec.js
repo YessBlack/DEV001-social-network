@@ -1,5 +1,5 @@
 import { registro, eventsRegistro } from '../src/components/Registro.js';
-import { createUser, loginGoogle } from '../src/lib/auth.js';
+import { createUser, loginGoogle, updateProfileUser } from '../src/lib/auth.js';
 
 jest.mock('../src/lib/auth.js');
 
@@ -42,9 +42,11 @@ describe('eventsRegistro', () => {
   });
 
   it('Deberia disparar un evento submit para registrar con email y password', (done) => {
+    window.location.hash = '#registrar';
     const event = new Event('submit');
     $('#email').value = 'resolve@gmail.com';
     $('#password').value = '123hdfh';
+    $('#name').value = 'nombre';
     $('#formRegister').dispatchEvent(event);
     setTimeout(() => {
       expect(window.location.hash).toBe('#timeline');
