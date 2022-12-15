@@ -40,6 +40,7 @@ export const Perfil = () => {
 export const eventsPerfil = () => {
   const $ = (selector) => document.querySelector(selector);
 
+  // Detectar si el usuario esta logueado para obtener sus datos
   authState((user) => {
     if (user !== null) {
       $('.photo-user-profile').src = user.photoURL;
@@ -49,10 +50,12 @@ export const eventsPerfil = () => {
     }
   });
 
+  // Redireccionar a la pagina de timeline
   $('.fa-house').addEventListener('click', () => {
     window.location.hash = '#timeline';
   });
 
+  // Cambiar nombre de usuario
   $('.update-profile').addEventListener('click', (e) => {
     e.preventDefault();
     const name = $('.input-name-user').value;
@@ -60,6 +63,7 @@ export const eventsPerfil = () => {
     $('.name-user').textContent = name;
   });
 
+  // Cambiar foto y nombre de perfil
   $('#input-file-photo').addEventListener('change', () => {
     const name = $('.input-name-user').value;
     const path = $('#input-file-photo').files[0];
@@ -74,6 +78,7 @@ export const eventsPerfil = () => {
       });
   });
 
+  // Redireccionar a la pagina de timeline
   $('#btn-cerrar-profile').addEventListener('click', () => {
     window.location.hash = '#timeline';
   });

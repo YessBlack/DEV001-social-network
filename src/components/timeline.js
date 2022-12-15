@@ -34,9 +34,13 @@ export const timeline = () => {
 
 export const eventsTimeLine = () => {
   const $ = (selector) => document.querySelector(selector);
+  // Escuchando cambios en la BD para mostrar los post
   onGetPost((res) => {
+    // en posts se guardan los post en formato html
     let posts = '';
+    // en arr se guardan los post para luego ordenarlos
     const arr = [];
+    // recorriendo los post de la BD
     res.forEach((doc) => {
       const post = doc.data();
       post.id = doc.id;
@@ -48,7 +52,9 @@ export const eventsTimeLine = () => {
       post.like = post.likes.forEach((email) => (currentUserInfo().email === email));
       arr.push(post);
     });
+    // ordenando los post de la BD del mas reciente al mas antiguo
     arr.sort((a, b) => b.fecha - a.fecha);
+    // recorriendo el arreglo de post para mostrarlos
     arr.forEach((post) => {
       posts += Post(
         post,
@@ -66,6 +72,7 @@ export const eventsTimeLine = () => {
     eventsPost();
   });
 
+  // Obtener informacion del usuario actual logueado
   authState((user) => {
     if (user !== null) {
       const fotoUsuario = user.photoURL;
@@ -73,30 +80,32 @@ export const eventsTimeLine = () => {
       $('#foto-perfil-post').referrerpolicy = 'no-referrer';
       $('#foto-perfil').src = fotoUsuario;
       $('#foto-perfil').referrerpolicy = 'no-referrer';
-      // $('#nombre').innerHTML = nombreUsuario;
     }
   });
 
+  // Modificar o eliminar Post
   $('#btn-post').addEventListener('click', () => {
     $('.modal').innerHTML = modalPost();
     eventsModalPost();
   });
 
+  // Cambiar a vista Editar Perfil
   $('#foto-perfil').addEventListener('click', () => {
     window.location.hash = '#perfil';
   });
 
+  // Cambiar a vista Inicio
   $('.fa-house').addEventListener('click', () => {
     window.scrollTo(0, 0);
   });
 
+  // Cerrar sesion
   $('#cerrar-sesion').addEventListener('click', (e) => {
     e.preventDefault();
     signOutUser()
       .then(() => {
         window.location.hash = '#login';
         window.location.reload();
-      })
-      .catch((error) => console.log(error));
+      });
   });
 };

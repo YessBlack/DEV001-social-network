@@ -23,28 +23,36 @@ export const modalPost = () => {
   return modal;
 };
 
+// Eventos para añadir Post
 export const eventsModalPost = () => {
   const $ = (selector) => document.querySelector(selector);
   $('#btn-cerrar-modal').addEventListener('click', () => {
     $('.modal').innerHTML = '';
   });
 
+  // Subiendo imagen a storage
   $('#input-file-photo').addEventListener('change', () => {
+    // Obtener el path de la imagen
     const path = $('#input-file-photo').files[0];
+    // Obtener datos del formulario post
     $('#formPublication').addEventListener('submit', (e) => {
       e.preventDefault();
       const data = Object.fromEntries(new FormData(e.target));
+      // Añadir datos adicionales
       data.fecha = Number(new Date());
       data.idUser = currentUserInfo().uid;
       data.photoUser = currentUserInfo().photoURL;
       data.nameUser = currentUserInfo().displayName;
       data.likes = [];
-      // data.likes = ['carloscorreo','nataliacorreo','angelicacorreo'];
+      // Subiendo imagen a storage
       uploadTask(storageRef(path, 'images'), path)
         .then((res) => {
+          // Obteniendo url de la imagen
           getDownloadIMG(res.ref.fullPath)
             .then((url) => {
+              // Añadiendo url de la imagen a los datos del post
               data.urlPhotoPost = url;
+              // Añadiendo post a firestore
               addPost(data)
                 .then(() => {
                   $('.modal').innerHTML = '';
@@ -55,9 +63,11 @@ export const eventsModalPost = () => {
   });
 };
 
+// Eventos para editar Post
 export const eventsEditarPost = (id) => {
   const $ = (selector) => document.querySelector(selector);
   $('.titulo').innerHTML = 'Editar Publicacion';
+  // Obtener datos del post a editar y mostrarlos en el modal
   getPost(id)
     .then((res) => {
       $('#name-product').value = res.data().producto;
@@ -66,6 +76,7 @@ export const eventsEditarPost = (id) => {
       $('#point-product').value = res.data().puntos;
     });
 
+  // Cambiar imagen del post
   $('#input-file-photo').addEventListener('change', () => {
     $('#formPublication').addEventListener('submit', (e) => {
       const data = Object.fromEntries(new FormData(e.target));
@@ -84,6 +95,7 @@ export const eventsEditarPost = (id) => {
     });
   });
 
+  // Editar post sin cambiar imagen
   $('#formPublication').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));

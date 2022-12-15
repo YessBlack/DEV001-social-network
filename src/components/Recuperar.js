@@ -24,12 +24,15 @@ export const eventsResetPassword = () => {
   const $ = (selector) => document.querySelector(selector);
   $('#formResetPassword').addEventListener('submit', (e) => {
     e.preventDefault();
+    // Obtener los datos del formulario
     const data = Object.fromEntries(new FormData(e.target));
-    const promise = resetPasswordEmail(data.email);
-    promise.then(() => {
-      alert('email enviado');
-      window.location.hash = '#login';
-    });
-    promise.catch(console.error());
+    // Enviar el email
+    resetPasswordEmail(data.email)
+      .then(() => {
+        // Mostrar mensaje de email enviado
+        alert('email enviado');
+        // Redireccionar a login
+        window.location.hash = '#login';
+      });
   });
 };
