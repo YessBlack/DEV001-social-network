@@ -26,7 +26,7 @@ export const login = () => {
       <p>¿No tienes cuenta? <a href="#registrar" class="containerAuth__register-link">Registrate</a></p>
     </section>
     <div class="img-desktop">
-    <img src="/assets/img/background_principal__rec.jpg">
+      <img src="https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fbackground_principal__rec.jpg?alt=media&token=7f0de2c3-886e-4427-b3f9-8b731be8f33e">
     </div>
   </section>`;
   return pageLogin;
