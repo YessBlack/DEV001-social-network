@@ -4,27 +4,36 @@ import {
   loginGoogle,
   resetPasswordEmail,
   signOutUser,
+  authState,
+  updateProfileUser,
+  currentUserInfo,
 } from '../src/lib/auth.js';
 
 import {
-  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signInWithPopup,
   sendPasswordResetEmail,
   signOut,
+  onAuthStateChanged,
+  updateProfile,
+  getAuth,
 } from '../src/lib/imports.js';
 
 jest.mock('../src/lib/imports.js');
 
 describe('createUser', () => {
   beforeEach(() => {
-    getAuth.mockImplementationOnce(() => 'hola');
-    createUserWithEmailAndPassword.mockImplementation(() => Promise.resolve('resolve'));
+    createUserWithEmailAndPassword.mockImplementationOnce(() => Promise.resolve('resolve'));
   });
 
   it('Debería ser una función', () => {
     expect(typeof createUser).toBe('function');
+  });
+
+  it('Deberia llamar a createUserWithEmailAndPassword', () => {
+    createUser();
+    expect(createUserWithEmailAndPassword).toHaveBeenCalled();
   });
 
   it('Deberia retornar una promesa', () => {
@@ -36,14 +45,18 @@ describe('createUser', () => {
   });
 });
 
-describe('login', () => {
+describe('loginUser', () => {
   beforeEach(() => {
-    getAuth.mockImplementationOnce(() => 'hola');
     signInWithEmailAndPassword.mockImplementation(() => Promise.resolve('resolve'));
   });
 
   it('Debería ser una función', () => {
-    expect(typeof createUser).toBe('function');
+    expect(typeof loginUser).toBe('function');
+  });
+
+  it('Deberia llamar a signInWithEmailAndPassword', () => {
+    loginUser();
+    expect(signInWithEmailAndPassword).toHaveBeenCalled();
   });
 
   it('Deberia retornar una promesa', () => {
@@ -57,12 +70,16 @@ describe('login', () => {
 
 describe('loginGoogle', () => {
   beforeEach(() => {
-    getAuth.mockImplementationOnce(() => 'hola');
     signInWithPopup.mockImplementationOnce(() => Promise.resolve('resolve'));
   });
 
   it('Debería ser una función', () => {
     expect(typeof loginGoogle).toBe('function');
+  });
+
+  it('Deberia llamar a signInWithPopup', () => {
+    loginGoogle();
+    expect(signInWithPopup).toHaveBeenCalled();
   });
 
   it('Deberia retornar una promesa', () => {
@@ -76,13 +93,18 @@ describe('loginGoogle', () => {
 
 describe('resetPasswordEmail', () => {
   beforeEach(() => {
-    getAuth.mockImplementationOnce(() => 'hola');
     sendPasswordResetEmail.mockImplementation(() => Promise.resolve('resolve'));
   });
 
   it('Debería ser una función', () => {
     expect(typeof resetPasswordEmail).toBe('function');
   });
+
+  it('Deberia llamar a sendPasswordResetEmail', () => {
+    resetPasswordEmail();
+    expect(sendPasswordResetEmail).toHaveBeenCalled();
+  });
+
   it('Deberia retornar una promesa', () => {
     expect(resetPasswordEmail()).toBeInstanceOf(Promise);
   });
@@ -94,12 +116,16 @@ describe('resetPasswordEmail', () => {
 
 describe('signOutUser', () => {
   beforeEach(() => {
-    getAuth.mockImplementationOnce(() => 'hola');
     signOut.mockImplementationOnce(() => Promise.resolve('resolve'));
   });
 
   it('Debería ser una función', () => {
     expect(typeof signOutUser).toBe('function');
+  });
+
+  it('Deberia llamar a signOut', () => {
+    signOutUser();
+    expect(signOut).toHaveBeenCalled();
   });
 
   it('Deberia retornar una promesa', () => {
@@ -111,6 +137,58 @@ describe('signOutUser', () => {
   });
 });
 
-afterEach(() => {
-  jest.clearAllMocks();
+describe('authState', () => {
+  beforeEach(() => {
+    onAuthStateChanged.mockImplementationOnce(() => ({ uid: '123' }));
+  });
+  it('Debería ser una función', () => {
+    expect(typeof authState).toBe('function');
+  });
+
+  it('Deberia llamar a onAuthStateChanged', () => {
+    authState();
+    expect(onAuthStateChanged).toHaveBeenCalled();
+  });
+
+  it('Deberia retornar un objeto', () => {
+    expect(authState()).toEqual({ uid: '123' });
+  });
+});
+
+describe('updateProfileUser', () => {
+  beforeEach(() => {
+    updateProfile.mockImplementationOnce(() => Promise.resolve('resolve'));
+  });
+
+  it('Debería ser una función', () => {
+    expect(typeof updateProfileUser).toBe('function');
+  });
+
+  it('Deberia llamar a updateProfile', () => {
+    updateProfileUser();
+    expect(updateProfile).toHaveBeenCalled();
+  });
+
+  it('Deberia retornar una promesa', () => {
+    expect(updateProfileUser()).toBeInstanceOf(Promise);
+  });
+
+  it('Deberia retornar una promesa resuelta', async () => {
+    await expect(updateProfileUser()).resolves.toBe('resolve');
+  });
+});
+
+describe('currentUserInfo', () => {
+  it('Debería ser una función', () => {
+    expect(typeof currentUserInfo).toBe('function');
+  });
+
+  it('Deberia llamar a getAuth', () => {
+    currentUserInfo();
+    expect(getAuth).toHaveBeenCalled();
+  });
+
+  it('Deberia retornar un objeto', () => {
+    expect(currentUserInfo()).toEqual({ displayName: 'hola', photoURL: 'hola' });
+  });
 });

@@ -38,19 +38,25 @@ export const eventsRegistro = () => {
   /* Iniciar sesión con email y contraseña */
   $('#formRegister').addEventListener('submit', (e) => {
     e.preventDefault();
+    // Recuperar los datos del formulario
     const data = Object.fromEntries(new FormData(e.target));
+    // Validar que los campos no estén vacíos
+    // Si estan vacios mostrar un mensaje de error
     if (data.email === '' || data.password === '') {
       $('.inputs-vacios').innerHTML = 'Todos los campos son obligatorios';
       $('#name').style.borderColor = 'red';
       $('#country').style.borderColor = 'red';
       $('#email').style.borderColor = 'red';
       $('#password').style.borderColor = 'red';
+      // Mostrar error por 5 segundos
       setTimeout(() => {
         $('.inputs-vacios').innerHTML = '';
       }, 5000);
+      // Si no estan vacios crear el usuario
     } else {
       createUser(data.email, data.password)
         .then(() => {
+          // Actualizar el perfil del usuario con el nombre y foto
           updateProfileUser(
             data.name,
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJ9J4o1n77Jtkz4DCltlA_lhqTZGgTUoIYRw&usqp=CAU',
@@ -60,6 +66,7 @@ export const eventsRegistro = () => {
             });
         })
         .catch((error) => {
+          // errores de firebase
           const errorCode = error.code;
           if (errorCode === 'auth/email-already-in-use') {
             $('.error-mail').innerHTML = 'Este email ya se encuentra en uso';
@@ -83,9 +90,6 @@ export const eventsRegistro = () => {
     loginGoogle()
       .then(() => {
         window.location.hash = '#timeline';
-      })
-      .catch((error) => {
-        console.log(error);
       });
   });
 

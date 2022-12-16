@@ -18,3 +18,10 @@ export const loginGoogle = jest.fn();
 export const authenticationEmail = jest.fn();
 export const resetPasswordEmail = jest.fn();
 export const signOutUser = jest.fn();
+
+export const updateProfileUser = jest.fn((name) => {
+  if (name === 'nombre') {
+    return Promise.resolve();
+  }
+  return '';
+});
