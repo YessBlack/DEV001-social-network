@@ -3,7 +3,7 @@ import { currentUserInfo } from '../lib/auth.js';
 import { deletePost, getPost, updatePost } from '../lib/crud.js';
 import { modalPost, eventsEditarPost } from './ModalPost.js';
 
-export const Post = (post, id, idUserDB, imgProfile, imgPost) => {
+export const Post = (post, id, idUserDB, imgProfile) => {
   const page = `<section class="container__post">
     <div class="header__post">
       <img id="foto-perfil" src="${imgProfile}">
