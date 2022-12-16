@@ -11,7 +11,7 @@ export const Post = (post, id, idUserDB, imgProfile, imgPost) => {
     </div>
 
     <div class="prueba-img">
-      <img src="${imgPost}" class="img__post">
+      <img src="${post.photoPost}" class="img__post">
     </div>
 
     <div class="review">
