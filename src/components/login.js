@@ -26,7 +26,7 @@ export const login = () => {
       <p>¿No tienes cuenta? <a href="#registrar" class="containerAuth__register-link">Registrate</a></p>
     </section>
     <div class="img-desktop">
-    <img src="assets/img/background_principal__rec.jpg">
+    <img src="/assets/img/background_principal__rec.jpg">
     </div>
   </section>`;
   return pageLogin;

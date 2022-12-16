@@ -10,7 +10,7 @@ export const welcome = () => {
     </div>
   </section>
   <div class="img-desktop">
-    <img src="https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fbackground_principal__rec.jpg?alt=media&token=7f0de2c3-886e-4427-b3f9-8b731be8f33e">
+    <img src="/assets/img/background_principal__rec.jpg">
   </div>
 </section>`;
   return pageWelcome;

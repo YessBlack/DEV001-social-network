@@ -27,7 +27,7 @@ export const registro = () => {
         <div class="error"></div>  
     </section>
     <div class="img-desktop">
-    <img src="assets/img/background_principal__rec.jpg">
+    <img src="/assets/img/background_principal__rec.jpg">
   </div>
   </section>`;
   return pageRegistro;
