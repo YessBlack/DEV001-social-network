@@ -1,0 +1,10 @@
+export const realTime = jest.fn();
+export const addPost = jest.fn();
+export const getPosts = jest.fn();
+export const onGetPost = jest.fn();
+export const deletePost = jest.fn();
+export const getPost = jest.fn();
+export const updatePost = jest.fn();
+export const storageRef = jest.fn();
+export const uploadTask = jest.fn();
+export const getDownloadIMG = jest.fn();

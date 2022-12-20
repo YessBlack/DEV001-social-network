@@ -43,6 +43,7 @@ export const eventsTimeLine = () => {
     // recorriendo los post de la BD
     res.forEach((doc) => {
       const post = doc.data();
+      // Datos del post para mostrarlos
       post.id = doc.id;
       post.idUserDB = doc.data().idUser;
       post.photoUser = doc.data().photoUser;
@@ -56,6 +57,7 @@ export const eventsTimeLine = () => {
     arr.sort((a, b) => b.fecha - a.fecha);
     // recorriendo el arreglo de post para mostrarlos
     arr.forEach((post) => {
+      // Guardar todos los post en formato html
       posts += Post(
         post,
         post.id,
@@ -67,7 +69,9 @@ export const eventsTimeLine = () => {
         post.like,
       );
     });
+    // Limpiar post existentes
     $('.posts').innerHTML = '';
+    // Mostrar post
     $('.posts').insertAdjacentHTML('beforeend', posts);
     eventsPost();
   });
@@ -83,7 +87,7 @@ export const eventsTimeLine = () => {
     }
   });
 
-  // Modificar o eliminar Post
+  // Añadir post
   $('#btn-post').addEventListener('click', () => {
     $('.modal').innerHTML = modalPost();
     eventsModalPost();

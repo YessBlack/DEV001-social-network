@@ -30,6 +30,7 @@ export const eventsResetPassword = () => {
     resetPasswordEmail(data.email)
       .then(() => {
         // Mostrar mensaje de email enviado
+        // eslint-disable-next-line no-alert
         alert('email enviado');
         // Redireccionar a login
         window.location.hash = '#login';
