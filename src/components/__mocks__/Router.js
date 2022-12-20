@@ -23,7 +23,6 @@ export const eventsRegistro = jest.fn(() => {
   const h1 = document.querySelector('h1');
   h1.innerHTML = 'mock router';
 });
-export const eventsLogin = jest.fn(() => {});
 
 export const exeEvents = jest.fn(() => {
   if (window.location.hash === '#registrar') {

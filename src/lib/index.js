@@ -1,4 +1,5 @@
-// export const mayuscula = (str) => str.toUpperCase();
+/*
+export const mayuscula = (str) => str.toUpperCase();
 
 export const capitalize = (str) => {
   const arr = str.split(' ');
@@ -16,3 +17,4 @@ export const capitalizeWordCut = (str, cut) => {
   const arr = str.split(' ').map((name) => name.substring(0, 1).toUpperCase() + name.substring(1, name.length));
   return arr.slice(0, cut).join(' ');
 };
+*/

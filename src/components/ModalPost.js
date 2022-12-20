@@ -26,6 +26,7 @@ export const modalPost = () => {
 // Eventos para añadir Post
 export const eventsModalPost = () => {
   const $ = (selector) => document.querySelector(selector);
+  // Cerrar modal
   $('#btn-cerrar-modal').addEventListener('click', () => {
     $('.modal').innerHTML = '';
   });
@@ -76,7 +77,7 @@ export const eventsEditarPost = (id) => {
       $('#point-product').value = res.data().puntos;
     });
 
-  // Cambiar imagen del post
+  // Cambiar solo imagen del post -- NO DATOS
   $('#input-file-photo').addEventListener('change', () => {
     $('#formPublication').addEventListener('submit', (e) => {
       const data = Object.fromEntries(new FormData(e.target));
@@ -95,7 +96,7 @@ export const eventsEditarPost = (id) => {
     });
   });
 
-  // Editar post sin cambiar imagen
+  // Editar post sin cambiar imagen -- SOLO DATOS DEL POST
   $('#formPublication').addEventListener('submit', (e) => {
     e.preventDefault();
     const data = Object.fromEntries(new FormData(e.target));

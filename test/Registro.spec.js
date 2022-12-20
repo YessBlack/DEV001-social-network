@@ -1,5 +1,5 @@
 import { registro, eventsRegistro } from '../src/components/Registro.js';
-import { createUser, loginGoogle, updateProfileUser } from '../src/lib/auth.js';
+import { createUser, loginGoogle } from '../src/lib/auth.js';
 
 jest.mock('../src/lib/auth.js');
 
@@ -41,7 +41,7 @@ describe('eventsRegistro', () => {
     expect($('.inputs-vacios').innerHTML).toBe('Todos los campos son obligatorios');
   });
 
-  it('Deberia disparar un evento submit para registrar con email y password', (done) => {
+  it('Deberia cambiar a timeline si el usuario se registra', (done) => {
     window.location.hash = '#registrar';
     const event = new Event('submit');
     $('#email').value = 'resolve@gmail.com';
