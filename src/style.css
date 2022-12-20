@@ -26,7 +26,8 @@ button {
 .container {
     padding: var(--paddingGeneral);
     height: 100vh;
-    background-image: url('https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fbackground_principal.jpg?alt=media&token=cee4fbad-0f2b-4f13-a784-250e155c1f85');
+    background-image: 
+    url('https://firebasestorage.googleapis.com/v0/b/foodtrack-6348d.appspot.com/o/assets%2Fbackground_principal.jpg?alt=media&token=cee4fbad-0f2b-4f13-a784-250e155c1f85');
     background-size: cover;
 }
 .container__content, .containerAuth__content {
@@ -265,6 +266,12 @@ button {
     padding:10px;
     z-index:10;
  }
+ .header__post img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    margin-right: 1rem;
+}
  .menu-nav img {
     width: 40px;
     height: 40px;
@@ -345,17 +352,16 @@ button {
     white-space: nowrap;
     cursor: pointer;
     display: inline-block;
-    overflow: hidden;
     padding: 0.625rem 1.25rem;
 }
- .fa-image{
+.fa-image {
  width: 100px;
  height: 100px;
- background-color: #a5a2a2;;
+ background-color: #a5a2a2;
  display: block;
  padding: 20px;
  margin: 0 auto 10px;
- }
+}
  .share-post{
     background-color: var(--colorPrimary);
     padding:14px;
@@ -380,14 +386,8 @@ button {
  .header__post {
     display: flex;
     align-items: center;
- }
- .header__post  img {
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    margin-right: 1rem;
- }
- .img__post {
+}
+.img__post {
     margin-top: 1rem;
     width: 100%;
     height: 300px;

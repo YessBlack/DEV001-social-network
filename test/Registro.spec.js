@@ -1,5 +1,5 @@
 import { registro, eventsRegistro } from '../src/components/Registro.js';
-import { createUser, loginGoogle } from '../src/lib/auth.js';
+import { createUser, loginGoogle, updateProfileUser } from '../src/lib/auth.js';
 
 jest.mock('../src/lib/auth.js');
 
@@ -41,6 +41,7 @@ describe('eventsRegistro', () => {
     expect($('.inputs-vacios').innerHTML).toBe('Todos los campos son obligatorios');
   });
 
+  /*
   it('Deberia cambiar a timeline si el usuario se registra', (done) => {
     window.location.hash = '#registrar';
     const event = new Event('submit');
@@ -52,6 +53,27 @@ describe('eventsRegistro', () => {
       expect(window.location.hash).toBe('#timeline');
       done();
     }, 1000);
+  });
+*/
+
+  it('Deberia disparar un evento submit para registrar con email y password', () => {
+    window.location.hash = '#registrar';
+    const event = new Event('submit');
+
+    $('#email').value = 'resolve@gmail.com';
+    $('#password').value = '123hdfh';
+    $('#name').value = 'nombre';
+
+    const promise1 = Promise.resolve({});
+    createUser.mockImplementationOnce(() => promise1);
+    const promise2 = Promise.resolve({});
+    updateProfileUser.mockImplementationOnce(() => promise2);
+
+    $('#formRegister').dispatchEvent(event);
+
+    return Promise.all([promise1, promise2]).then(() => {
+      expect(window.location.hash).toBe('#timeline');
+    });
   });
 
   it('Deberia mostrar un error si el email no es valido', (done) => {

@@ -84,6 +84,7 @@ describe('storageRef', () => {
   it('debería ser una función', () => {
     expect(typeof storageRef).toBe('function');
   });
+
   it('debería poder obtener una referencia', () => {
     storageRef();
     ref.mockReturnValue('ref');
